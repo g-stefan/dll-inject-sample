@@ -1,4 +1,5 @@
-dll-inject-sample
-=================
+
+XYO Win Inject Library
+======================
 
 Injectable dll example
