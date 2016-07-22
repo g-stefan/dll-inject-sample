@@ -1,8 +1,9 @@
 static FARPROC WINAPI _new_kernel32__GetProcAddress_408(HMODULE hModule,LPCSTR lpProcName) {
 	FARPROC retV=NULL;
 
-#include "new_kernel32__GetProcAddress.cpp"
+	//OutputDebugStringZA("kernel32_GetProcAddress:",hModule,lpProcName);
 
 	retV=(*_original_kernel32__GetProcAddress_408)(hModule,lpProcName);
-	return retV;
+
+	return hook_GetProcAddress(retV,hModule,lpProcName);
 };
