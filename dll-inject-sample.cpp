@@ -255,8 +255,8 @@ BOOL APIENTRY DllMain (HINSTANCE hInstance,DWORD reason,LPVOID reserved) {
 			};
 			break;
 		case DLL_PROCESS_DETACH: {
-				TlsFree(tlsIndex);
 				OutputDebugString("DLL_PROCESS_DETACH");
+				TlsFree(tlsIndex);
 			};
 			break;
 		case DLL_THREAD_ATTACH: {
