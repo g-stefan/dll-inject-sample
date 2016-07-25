@@ -1,0 +1,7 @@
+#include "new_kernelbase__CreateProcessA.cpp"
+#include "new_kernelbase__CreateProcessW.cpp"
+#include "new_kernelbase__LoadLibraryA.cpp"
+#include "new_kernelbase__LoadLibraryExA.cpp"
+#include "new_kernelbase__LoadLibraryExW.cpp"
+#include "new_kernelbase__LoadLibraryW.cpp"
+#include "new_kernelbase__GetProcAddress.cpp"

@@ -1,0 +1,7 @@
+&_hook_kernelbase__CreateProcessA,
+&_hook_kernelbase__CreateProcessW,
+&_hook_kernelbase__LoadLibraryA,
+&_hook_kernelbase__LoadLibraryExA,
+&_hook_kernelbase__LoadLibraryExW,
+&_hook_kernelbase__LoadLibraryW,
+&_hook_kernelbase__GetProcAddress,

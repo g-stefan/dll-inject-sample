@@ -34,20 +34,19 @@
 #include <exdispid.h>
 #include <servprov.h>
 
-
-void OutputDebugStringXA(const char *text1,const char *text2) {
+static void OutputDebugStringXA(const char *text1,const char *text2) {
 	char buf[2048];
 	wsprintfA(buf,"%s%s",text1,text2);
 	OutputDebugStringA(buf);
 };
 
-void OutputDebugStringXW(const wchar_t *text1,const wchar_t *text2) {
+static void OutputDebugStringXW(const wchar_t *text1,const wchar_t *text2) {
 	wchar_t buf[2048];
 	wsprintfW(buf,L"%s%s",text1,text2);
 	OutputDebugStringW(buf);
 };
 
-void OutputDebugStringZA(const char *text1,HMODULE hmodule,const char *text2) {
+static void OutputDebugStringZA(const char *text1,HMODULE hmodule,const char *text2) {
 	char buf[2048];
 	char buf2[2048];
 
@@ -62,183 +61,165 @@ void OutputDebugStringZA(const char *text1,HMODULE hmodule,const char *text2) {
 #include "dll-inject-sample-licence.hpp"
 #include "dll-inject-sample-version.hpp"
 
+static char             thisProcessFileName[MAX_PATH];
 static char             thisModuleFileName[MAX_PATH];
 static HINSTANCE        thisModule;
-static int              loadedModulesSp;
+static size_t           loadedModulesSp;
 static HMODULE          loadedModules[16384];
 static void             thisHookInstance(HMODULE hInstance);
+static DWORD		tlsIndex;
+//
+typedef struct SHookProcess{
 
-static XYO::Win::Inject::Hook::PGetProcAddress _original__GetProcAddress;
-static FARPROC WINAPI hook_GetProcAddress(FARPROC retV,HMODULE hModule,LPCSTR lpProcName);
+	//WSARecv
+	LPWSABUF WSARecv_lpBuffers;
+	DWORD WSARecv_dwBufferCount;
+	LPWSAOVERLAPPED WSARecv_lpOverlapped;
 
+	//WSASend
+	LPWSABUF WSASend_lpBuffers;
+	DWORD WSASend_dwBufferCount;
+	LPWSAOVERLAPPED WSASend_lpOverlapped;
+
+	//
+	FILE *recvLog;
+	FILE *sendLog;
+
+}HookProcess;
+
+static HookProcess *newHookProcess(){
+	HookProcess *hookProcess=new HookProcess();
+	//
+	hookProcess->WSARecv_lpBuffers=nullptr;
+	hookProcess->WSARecv_dwBufferCount=0;
+	hookProcess->WSARecv_lpOverlapped=nullptr;
+	//
+	hookProcess->WSASend_lpBuffers=nullptr;
+	hookProcess->WSASend_dwBufferCount=0;
+	hookProcess->WSASend_lpOverlapped=nullptr;
+	//
+	//
+	
+	char name[128];
+	wsprintf(name,"c:\\tmp\\recv-%p.bin",GetCurrentThreadId());
+	hookProcess->recvLog=fopen(name,"ab");
+	OutputDebugStringA(name);
+	wsprintf(name,"c:\\tmp\\send-%p.bin",GetCurrentThreadId());
+	hookProcess->sendLog=fopen(name,"ab");
+	OutputDebugStringA(name);	
+	return hookProcess;
+};
+
+static void deleteHookProcess(HookProcess *hookProcess){
+	fclose(hookProcess->recvLog);
+	fclose(hookProcess->sendLog);
+	delete hookProcess;
+};
+
+static void checkHookProcess(HookProcess *&hookProcess){
+	if(hookProcess==nullptr){
+		hookProcess=newHookProcess();
+		TlsSetValue(tlsIndex,hookProcess);
+	};
+};
+
+static HookProcess *getHookProcess(){
+	HookProcess *hookProcess=((HookProcess *)TlsGetValue(tlsIndex));
+	if(hookProcess==nullptr){
+		hookProcess=newHookProcess();
+		TlsSetValue(tlsIndex,hookProcess);
+	};
+	return hookProcess;
+};
+
+static void recvHookProcess(HookProcess *hookProcess,char *buf,size_t len){
+	checkHookProcess(hookProcess);
+
+	OutputDebugStringA("recvHookProcess");
+	fwrite(buf,1,len,hookProcess->recvLog);
+	fflush(hookProcess->recvLog);
+};
+
+static void sendHookProcess(HookProcess *hookProcess,const char *buf,size_t len){
+	checkHookProcess(hookProcess);
+
+	OutputDebugStringA("sendHookProcess");
+	fwrite(buf,1,len,hookProcess->sendLog);
+	fflush(hookProcess->recvLog);
+};
+
+typedef FARPROC (WINAPI *PGetProcAddress)(HMODULE hModule,LPCSTR lpProcName);
+static FARPROC WINAPI hook_GetProcAddress(FARPROC originalPorc,HMODULE hModule,LPCSTR lpProcName);
 //
 #include "new_kernel32.cpp"
-#include "new_kernel32__CreateProcessA_99.cpp"
-#include "new_kernel32__CreateProcessW_103.cpp"
-#include "new_kernel32__GetProcAddress_408.cpp"
-#include "new_kernel32__LoadLibraryA_578.cpp"
-#include "new_kernel32__LoadLibraryExA_579.cpp"
-#include "new_kernel32__LoadLibraryExW_580.cpp"
-#include "new_kernel32__LoadLibraryW_581.cpp"
-#include "new_kernel32__LoadModule_582.cpp"
+#include "new_kernel32___proc.cpp"
 #include "new_api-ms-win-core-processthreads-l1-1-2.cpp"
-#include "new_api-ms-win-core-processthreads-l1-1-2__CreateProcessW_3.cpp"
+#include "new_api-ms-win-core-processthreads-l1-1-2___proc.cpp"
 #include "new_api-ms-win-core-libraryloader-l1-2-0.cpp"
-#include "new_api-ms-win-core-libraryloader-l1-2-0__GetProcAddress_20.cpp"
-#include "new_api-ms-win-core-libraryloader-l1-2-0__LoadLibraryExA_22.cpp"
-#include "new_api-ms-win-core-libraryloader-l1-2-0__LoadLibraryExW_23.cpp"
+#include "new_api-ms-win-core-libraryloader-l1-2-0___proc.cpp"
 #include "new_kernelbase.cpp"
-#include "new_kernelbase__CreateProcessA_189.cpp"
-#include "new_kernelbase__CreateProcessW_194.cpp"
-#include "new_kernelbase__GetProcAddress_598.cpp"
-#include "new_kernelbase__LoadLibraryA_892.cpp"
-#include "new_kernelbase__LoadLibraryExA_893.cpp"
-#include "new_kernelbase__LoadLibraryExW_894.cpp"
-#include "new_kernelbase__LoadLibraryW_895.cpp"
+#include "new_kernelbase___proc.cpp"
 //
 #include "new_wininet.cpp"
-#include "new_wininet__InternetConnectA_229.cpp"
-#include "new_wininet__InternetConnectW_230.cpp"
-#include "new_wininet__InternetReadFile_272.cpp"
+#include "new_wininet___proc.cpp"
 #include "new_ws2_32.cpp"
-#include "new_ws2_32__connect_4.cpp"
-#include "new_ws2_32__WSAConnect_30.cpp"
-#include "new_ws2_32__recv_16.cpp"
-#include "new_ws2_32__send_19.cpp"
-#include "new_ws2_32__bind_2.cpp"
+#include "new_ws2_32___proc.cpp"
 #include "new_wsock32.cpp"
-#include "new_wsock32__connect_4.cpp"
-#include "new_wsock32__recv_16.cpp"
-#include "new_wsock32__send_19.cpp"
-#include "new_wsock32__bind_2.cpp"
+#include "new_wsock32___proc.cpp"
 
+static XYO::Win::Inject::Hook::HookProc *hookList[]={
+//
+#include "new_kernel32___hookProc.cpp"
+#include "new_kernelbase___hookProc.cpp"
+#include "new_api-ms-win-core-libraryloader-l1-2-0___hookProc.cpp"
+#include "new_api-ms-win-core-processthreads-l1-1-2___hookProc.cpp"
+//
+#include "new_wininet___hookProc.cpp"
+#include "new_ws2_32___hookProc.cpp"
+#include "new_wsock32___hookProc.cpp"
+//
 
-FARPROC WINAPI hook_GetProcAddress(FARPROC retV,HMODULE hModule,LPCSTR lpProcName) {
+//
+	nullptr 
+};
 
-#include "new_kernel32__GetProcAddress.cpp"
-#include "new_kernelbase__GetProcAddress.cpp"
-#include "new_api-ms-win-core-libraryloader-l1-2-0__GetProcAddress.cpp"
-#include "new_api-ms-win-core-processthreads-l1-1-2__GetProcAddress.cpp"
+static void setOriginalFunction(){
+#include "new_kernel32___setOriginalFunction.cpp"
+#include "new_kernelbase___setOriginalFunction.cpp"
+#include "new_api-ms-win-core-libraryloader-l1-2-0___setOriginalFunction.cpp"
+#include "new_api-ms-win-core-processthreads-l1-1-2___setOriginalFunction.cpp"
+//
+#include "new_wininet___setOriginalFunction.cpp"
+#include "new_ws2_32___setOriginalFunction.cpp"
+#include "new_wsock32___setOriginalFunction.cpp"
+};
 
-#include "new_wininet__GetProcAddress.cpp"
-#include "new_ws2_32__GetProcAddress.cpp"
-#include "new_wsock32__GetProcAddress.cpp"
-
-	return retV;
+FARPROC WINAPI hook_GetProcAddress(FARPROC originalPorc,HMODULE hModule,LPCSTR lpProcName) {
+FARPROC retV;
+	retV=XYO::Win::Inject::Hook::getProcAddress(hModule,lpProcName,hookList);
+	if(retV!=nullptr){
+		return retV;
+	};
+	return (*((PGetProcAddress)originalPorc))(hModule,lpProcName);
 };
 
 static LPSTR dllHookSkip[]= {
-	"ICMP.DLL",
-	"WS2_32.DLL",
-	"WSOCK32.DLL",
 	"NTDLL.DLL",
 	"KERNEL32.DLL",
 	"KERNELBASE.DLL",
+	"ICMP.DLL",
+	"WININET.DLL",
+	"WS2_32.DLL",
+	"WSOCK32.DLL",
 	NULL
 };
 
-static BOOL WINAPI thisEnumImportModuleName(PVOID userData,LPSTR module) {
-	HMODULE hModule;
-
-	userData;
-	hModule=GetModuleHandle(module);
-	if(hModule!=NULL) {
-		//OutputDebugStringXA("#import-original: ",module);
-		//char buf[MAX_PATH];
-		//GetModuleFileName(hModule,buf,MAX_PATH);
-		//OutputDebugStringXA("#import-handle: ",buf);
-		thisHookInstance(hModule);
-	} else {
-		OutputDebugStringXA("#import-null: ",module);
-	};
-	return TRUE;
-};
-
-static void thisHookInstanceProcess(HMODULE hInstance,BOOL mode) {
-	//
-	// kernel
-	//
-	_replace_kernel32__CreateProcessA_99 (hInstance,mode);
-	_replace_kernel32__CreateProcessW_103(hInstance,mode);
-	_replace_kernel32__LoadLibraryA_578  (hInstance,mode);
-	_replace_kernel32__LoadLibraryExA_579(hInstance,mode);
-	_replace_kernel32__LoadLibraryExW_580(hInstance,mode);
-	_replace_kernel32__LoadLibraryW_581  (hInstance,mode);
-	_replace_kernel32__LoadModule_582    (hInstance,mode);
-	//
-	_replace_kernel32__GetProcAddress_408(hInstance,mode);
-	//
-	//
-	_replace_api_ms_win_core_libraryloader_l1_2_0__LoadLibraryExA_22(hInstance,mode);
-	_replace_api_ms_win_core_libraryloader_l1_2_0__LoadLibraryExW_23(hInstance,mode);
-	_replace_api_ms_win_core_libraryloader_l1_2_0__GetProcAddress_20(hInstance,mode);
-	//
-	_replace_api_ms_win_core_processthreads_l1_1_2__CreateProcessW_3(hInstance,mode);
-	//
-	_replace_kernelbase__CreateProcessA_189(hInstance,mode);
-	_replace_kernelbase__CreateProcessW_194(hInstance,mode);
-	_replace_kernelbase__LoadLibraryA_892(hInstance,mode);
-	_replace_kernelbase__LoadLibraryExA_893(hInstance,mode);
-	_replace_kernelbase__LoadLibraryExW_894(hInstance,mode);
-	_replace_kernelbase__LoadLibraryW_895(hInstance,mode);
-	_replace_kernelbase__GetProcAddress_598(hInstance,mode);
-
-	//
-	// Other
-	//
-
-	_replace_wsock32__connect_4(hInstance,mode);
-	_replace_wsock32__recv_16(hInstance,mode);
-	_replace_wsock32__send_19(hInstance,mode);
-	_replace_wsock32__bind_2(hInstance,mode);
-
-	_replace_wininet__InternetConnectA_229(hInstance,mode);
-	_replace_wininet__InternetConnectW_230(hInstance,mode);
-	_replace_wininet__InternetReadFile_272(hInstance,mode);
-
-	//
-	_replace_ws2_32__connect_4(hInstance,mode);
-	_replace_ws2_32__WSAConnect_30(hInstance,mode);
-	_replace_ws2_32__recv_16(hInstance,mode);
-	_replace_ws2_32__send_19(hInstance,mode);
-	_replace_ws2_32__bind_2(hInstance,mode);
-};
-
 static void thisHookInstance(HMODULE hInstance) {
-	int n;
-	char buf[MAX_PATH];
-
-	if(hInstance==NULL) {
-		return;
-	}
-
-	GetModuleFileName(hInstance,buf,MAX_PATH);
-	//OutputDebugStringXA("#hook: ",buf);
-
-	for(n=0; n<loadedModulesSp; ++n) {
-		if(loadedModules[n]==hInstance) {
-			//OutputDebugStringXA("#loaded: ",buf);
-			return;
-		}
+	if(XYO::Win::Inject::Hook::processModule(hInstance,hookList,loadedModules,loadedModulesSp,16380,dllHookSkip)){	
+		char buf[MAX_PATH];
+		GetModuleFileName(hInstance,buf,MAX_PATH);
+		OutputDebugStringXA("#hook: ",buf);
 	};
-	loadedModules[loadedModulesSp]=hInstance;
-	if(loadedModulesSp<16380) {
-		++loadedModulesSp;
-	};
-
-	for(n=0; dllHookSkip[n]!=NULL; ++n) {
-		if(hInstance==GetModuleHandle(dllHookSkip[n])) {
-			//OutputDebugStringXA("#skip: ",buf);
-			return;
-		};
-	};
-
-	thisHookInstanceProcess(hInstance,true);
-	thisHookInstanceProcess(hInstance,false);
-
-	OutputDebugStringXA("#hook-ok: ",buf);
-
-	XYO::Win::Inject::Hook::enumImportTable(hInstance,thisEnumImportModuleName,NULL);
 };
 
 static BOOL isAttached=FALSE;
@@ -247,41 +228,26 @@ BOOL APIENTRY DllMain (HINSTANCE hInstance,DWORD reason,LPVOID reserved) {
 	hInstance;
 	switch(reason) {
 		case DLL_PROCESS_ATTACH: {
+				OutputDebugString("DLL_PROCESS_ATTACH");
 				if(!isAttached) {
-					//
-					_original__GetProcAddress=GetProcAddress;
-					//
-
-					char processName[2048];
-					GetModuleFileName(NULL,processName,2048);
-
-					OutputDebugStringA("--- hookX1 ---");
-					OutputDebugStringA(processName);
-
-					DisableThreadLibraryCalls((HMODULE)hInstance);
-
 					isAttached=TRUE;
 					loadedModulesSp=0;
 					thisModule=hInstance;
-					GetModuleFileNameA(hInstance,thisModuleFileName,1020);
+					GetModuleFileName(NULL,thisProcessFileName,MAX_PATH);
+					GetModuleFileNameA(hInstance,thisModuleFileName,MAX_PATH);
+					tlsIndex=TlsAlloc();
+					if(tlsIndex==TLS_OUT_OF_INDEXES){
+						return FALSE;
+					};
+					setOriginalFunction();
+                                        //DisableThreadLibraryCalls((HMODULE)hInstance);
 
-					_original_kernel32__GetProcAddress_408=GetProcAddress;
-					_original_kernel32__LoadLibraryA_578=LoadLibraryA;
-					_original_kernel32__LoadLibraryExA_579=LoadLibraryExA;
-					_original_kernel32__LoadLibraryExW_580=LoadLibraryExW;
-					_original_kernel32__LoadLibraryW_581=LoadLibraryW;
-					//
-					_original_api_ms_win_core_libraryloader_l1_2_0__LoadLibraryExA_22=LoadLibraryExA;
-					_original_api_ms_win_core_libraryloader_l1_2_0__LoadLibraryExW_23=LoadLibraryExW;
-					_original_api_ms_win_core_libraryloader_l1_2_0__GetProcAddress_20=GetProcAddress;
-					//
-					_original_kernelbase__LoadLibraryA_892=LoadLibraryA;
-					_original_kernelbase__LoadLibraryExA_893=LoadLibraryExA;
-					_original_kernelbase__LoadLibraryExW_894=LoadLibraryExW;
-					_original_kernelbase__LoadLibraryW_895=LoadLibraryW;
-					_original_kernelbase__GetProcAddress_598=GetProcAddress;
 					//
 
+					OutputDebugStringA("--- hook ---");
+					OutputDebugStringA(thisProcessFileName);
+					OutputDebugStringA(thisModuleFileName);
+					//
 					OutputDebugStringA("--- imports ---");
 					thisHookInstance(GetModuleHandle(NULL));
 				};
@@ -289,15 +255,18 @@ BOOL APIENTRY DllMain (HINSTANCE hInstance,DWORD reason,LPVOID reserved) {
 			};
 			break;
 		case DLL_PROCESS_DETACH: {
-				//OutputDebugString("");
+				TlsFree(tlsIndex);
+				OutputDebugString("DLL_PROCESS_DETACH");
 			};
 			break;
 		case DLL_THREAD_ATTACH: {
-				//OutputDebugString("");
+				OutputDebugString("DLL_THREAD_ATTACH");
+				TlsSetValue(tlsIndex,newHookProcess());
 			};
 			break;
 		case DLL_THREAD_DETACH: {
-				//OutputDebugString("");
+				OutputDebugString("DLL_THREAD_DETACH");
+				deleteHookProcess((HookProcess *)TlsGetValue(tlsIndex));
 			};
 			break;
 	};

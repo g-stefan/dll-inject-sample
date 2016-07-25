@@ -1,75 +1,32 @@
-typedef int (WSAAPI *_ptr_ws2_32__connect_4)(SOCKET s,const struct sockaddr *addr,int sz);
-static _ptr_ws2_32__connect_4 _original_ws2_32__connect_4;
-static int WSAAPI _new_ws2_32__connect_4(SOCKET s,const struct sockaddr *addr,int sz);
-static void _replace_ws2_32__connect_4(HINSTANCE hInstance,BOOL mode) {
-	_ptr_ws2_32__connect_4 _function;
-	if(hInstance!=GetModuleHandle("ws2_32.dll")) {
-		_function=(_ptr_ws2_32__connect_4)XYO::Win::Inject::Hook::replaceFunction(hInstance,(PROC)_new_ws2_32__connect_4,"ws2_32.dll","connect",4,_original__GetProcAddress,mode);
-		if(_function==nullptr) {
-			_function=(_ptr_ws2_32__connect_4)XYO::Win::Inject::Hook::replaceFunction(hInstance,(PROC)_new_ws2_32__connect_4,"ws2_32","connect",4,_original__GetProcAddress,mode);
-		};
-		if(_function!=nullptr) {
-			_original_ws2_32__connect_4=_function;
-		};
-	};
-};
-typedef int (WSAAPI *_ptr_ws2_32__recv_16)(SOCKET s, char *buf,int len,int flags);
-static _ptr_ws2_32__recv_16 _original_ws2_32__recv_16;
-static int WSAAPI _new_ws2_32__recv_16(SOCKET s, char *buf,int len,int flags);
-static void _replace_ws2_32__recv_16(HINSTANCE hInstance,BOOL mode) {
-	_ptr_ws2_32__recv_16 _function;
-	if(hInstance!=GetModuleHandle("ws2_32.dll")) {
-		_function=(_ptr_ws2_32__recv_16)XYO::Win::Inject::Hook::replaceFunction(hInstance,(PROC)_new_ws2_32__recv_16,"ws2_32.dll","recv",16,_original__GetProcAddress,mode);
-		if(_function==nullptr) {
-			_function=(_ptr_ws2_32__recv_16)XYO::Win::Inject::Hook::replaceFunction(hInstance,(PROC)_new_ws2_32__recv_16,"ws2_32","recv",16,_original__GetProcAddress,mode);
-		};
-		if(_function!=nullptr) {
-			_original_ws2_32__recv_16=_function;
-		};
-	};
-};
-typedef int (WSAAPI *_ptr_ws2_32__WSAConnect_30)(SOCKET s,const struct sockaddr *name,int namelen,void *lpCallerData,void *lpCalleeData,void *lpSQOS,void *lpGQOS);
-static _ptr_ws2_32__WSAConnect_30 _original_ws2_32__WSAConnect_30;
-static int WSAAPI _new_ws2_32__WSAConnect_30(SOCKET s,const struct sockaddr *name,int namelen,void *lpCallerData,void *lpCalleeData,void *lpSQOS,void *lpGQOS);
-static void _replace_ws2_32__WSAConnect_30(HINSTANCE hInstance,BOOL mode) {
-	_ptr_ws2_32__WSAConnect_30 _function;
-	if(hInstance!=GetModuleHandle("ws2_32.dll")) {
-		_function=(_ptr_ws2_32__WSAConnect_30)XYO::Win::Inject::Hook::replaceFunction(hInstance,(PROC)_new_ws2_32__WSAConnect_30,"ws2_32.dll","WSAConnect",30,_original__GetProcAddress,mode);
-		if(_function==nullptr) {
-			_function=(_ptr_ws2_32__WSAConnect_30)XYO::Win::Inject::Hook::replaceFunction(hInstance,(PROC)_new_ws2_32__WSAConnect_30,"ws2_32","WSAConnect",30,_original__GetProcAddress,mode);
-		};
-		if(_function!=nullptr) {
-			_original_ws2_32__WSAConnect_30=_function;
-		};
-	};
-};
-typedef int (WSAAPI *_ptr_ws2_32__send_19)(SOCKET s,const char *buf,int len,int flags);
-static _ptr_ws2_32__send_19 _original_ws2_32__send_19;
-static int WSAAPI _new_ws2_32__send_19(SOCKET s,const char *buf,int len,int flags);
-static void _replace_ws2_32__send_19(HINSTANCE hInstance,BOOL mode) {
-	_ptr_ws2_32__send_19 _function;
-	if(hInstance!=GetModuleHandle("ws2_32.dll")) {
-		_function=(_ptr_ws2_32__send_19)XYO::Win::Inject::Hook::replaceFunction(hInstance,(PROC)_new_ws2_32__send_19,"ws2_32.dll","send",19,_original__GetProcAddress,mode);
-		if(_function==nullptr) {
-			_function=(_ptr_ws2_32__send_19)XYO::Win::Inject::Hook::replaceFunction(hInstance,(PROC)_new_ws2_32__send_19,"ws2_32","send",19,_original__GetProcAddress,mode);
-		};
-		if(_function!=nullptr) {
-			_original_ws2_32__send_19=_function;
-		};
-	};
-};
-typedef int (WSAAPI *_ptr_ws2_32__bind_2)(SOCKET s, const struct sockaddr *addr, int sz);
-static _ptr_ws2_32__bind_2 _original_ws2_32__bind_2;
-static int WSAAPI _new_ws2_32__bind_2(SOCKET s, const struct sockaddr *addr, int sz);
-static void _replace_ws2_32__bind_2(HINSTANCE hInstance,BOOL mode) {
-	_ptr_ws2_32__bind_2 _function;
-	if(hInstance!=GetModuleHandle("ws2_32.dll")) {
-		_function=(_ptr_ws2_32__bind_2)XYO::Win::Inject::Hook::replaceFunction(hInstance,(PROC)_new_ws2_32__bind_2,"ws2_32.dll","bind",2,_original__GetProcAddress,mode);
-		if(_function==nullptr) {
-			_function=(_ptr_ws2_32__bind_2)XYO::Win::Inject::Hook::replaceFunction(hInstance,(PROC)_new_ws2_32__bind_2,"ws2_32","bind",2,_original__GetProcAddress,mode);
-		};
-		if(_function!=nullptr) {
-			_original_ws2_32__bind_2=_function;
-		};
-	};
-};
+typedef int (WSAAPI *_ptr_ws2_32__connect)(SOCKET s,const struct sockaddr *addr,int sz);
+static int WSAAPI _new_ws2_32__connect(SOCKET s,const struct sockaddr *addr,int sz);
+static XYO::Win::Inject::Hook::HookProc _hook_ws2_32__connect;
+#define _original_ws2_32__connect ((_ptr_ws2_32__connect)(_hook_ws2_32__connect.originalProc))
+typedef int (WSAAPI *_ptr_ws2_32__recv)(SOCKET s, char* buf,int len,int flags);
+static int WSAAPI _new_ws2_32__recv(SOCKET s, char* buf,int len,int flags);
+static XYO::Win::Inject::Hook::HookProc _hook_ws2_32__recv;
+#define _original_ws2_32__recv ((_ptr_ws2_32__recv)(_hook_ws2_32__recv.originalProc))
+typedef int (WSAAPI *_ptr_ws2_32__WSAConnect)(SOCKET s,const struct sockaddr *name,int namelen,void * lpCallerData,void * lpCalleeData,void * lpSQOS,void * lpGQOS);
+static int WSAAPI _new_ws2_32__WSAConnect(SOCKET s,const struct sockaddr *name,int namelen,void * lpCallerData,void * lpCalleeData,void * lpSQOS,void * lpGQOS);
+static XYO::Win::Inject::Hook::HookProc _hook_ws2_32__WSAConnect;
+#define _original_ws2_32__WSAConnect ((_ptr_ws2_32__WSAConnect)(_hook_ws2_32__WSAConnect.originalProc))
+typedef int (WSAAPI *_ptr_ws2_32__send)(SOCKET s,const char* buf,int len,int flags);
+static int WSAAPI _new_ws2_32__send(SOCKET s,const char* buf,int len,int flags);
+static XYO::Win::Inject::Hook::HookProc _hook_ws2_32__send;
+#define _original_ws2_32__send ((_ptr_ws2_32__send)(_hook_ws2_32__send.originalProc))
+typedef int (WSAAPI *_ptr_ws2_32__bind)(SOCKET s, const struct sockaddr *addr, int sz);
+static int WSAAPI _new_ws2_32__bind(SOCKET s, const struct sockaddr *addr, int sz);
+static XYO::Win::Inject::Hook::HookProc _hook_ws2_32__bind;
+#define _original_ws2_32__bind ((_ptr_ws2_32__bind)(_hook_ws2_32__bind.originalProc))
+typedef int (WSAAPI *_ptr_ws2_32__WSARecv)(SOCKET s,LPWSABUF lpBuffers,DWORD dwBufferCount,LPDWORD lpNumberOfBytesRecvd,LPDWORD lpFlags,LPWSAOVERLAPPED lpOverlapped,LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine);
+static int WSAAPI _new_ws2_32__WSARecv(SOCKET s,LPWSABUF lpBuffers,DWORD dwBufferCount,LPDWORD lpNumberOfBytesRecvd,LPDWORD lpFlags,LPWSAOVERLAPPED lpOverlapped,LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine);
+static XYO::Win::Inject::Hook::HookProc _hook_ws2_32__WSARecv;
+#define _original_ws2_32__WSARecv ((_ptr_ws2_32__WSARecv)(_hook_ws2_32__WSARecv.originalProc))
+typedef int (WSAAPI *_ptr_ws2_32__WSASend)(SOCKET s,LPWSABUF lpBuffers,DWORD dwBufferCount,LPDWORD lpNumberOfBytesSent,DWORD dwFlags,LPWSAOVERLAPPED lpOverlapped,LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine);
+static int WSAAPI _new_ws2_32__WSASend(SOCKET s,LPWSABUF lpBuffers,DWORD dwBufferCount,LPDWORD lpNumberOfBytesSent,DWORD dwFlags,LPWSAOVERLAPPED lpOverlapped,LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine);
+static XYO::Win::Inject::Hook::HookProc _hook_ws2_32__WSASend;
+#define _original_ws2_32__WSASend ((_ptr_ws2_32__WSASend)(_hook_ws2_32__WSASend.originalProc))
+typedef BOOL (WSAAPI *_ptr_ws2_32__WSAGetOverlappedResult)(SOCKET s,LPWSAOVERLAPPED lpOverlapped,LPDWORD lpcbTransfer,BOOL fWait,LPDWORD lpdwFlags);
+static BOOL WSAAPI _new_ws2_32__WSAGetOverlappedResult(SOCKET s,LPWSAOVERLAPPED lpOverlapped,LPDWORD lpcbTransfer,BOOL fWait,LPDWORD lpdwFlags);
+static XYO::Win::Inject::Hook::HookProc _hook_ws2_32__WSAGetOverlappedResult;
+#define _original_ws2_32__WSAGetOverlappedResult ((_ptr_ws2_32__WSAGetOverlappedResult)(_hook_ws2_32__WSAGetOverlappedResult.originalProc))

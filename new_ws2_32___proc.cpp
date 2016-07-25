@@ -1,0 +1,8 @@
+#include "new_ws2_32__connect.cpp"
+#include "new_ws2_32__recv.cpp"
+#include "new_ws2_32__WSAConnect.cpp"
+#include "new_ws2_32__send.cpp"
+#include "new_ws2_32__bind.cpp"
+#include "new_ws2_32__WSARecv.cpp"
+#include "new_ws2_32__WSASend.cpp"
+#include "new_ws2_32__WSAGetOverlappedResult.cpp"

@@ -1,0 +1,8 @@
+#include "new_kernel32__CreateProcessA.cpp"
+#include "new_kernel32__CreateProcessW.cpp"
+#include "new_kernel32__LoadLibraryA.cpp"
+#include "new_kernel32__LoadLibraryExA.cpp"
+#include "new_kernel32__LoadLibraryExW.cpp"
+#include "new_kernel32__LoadLibraryW.cpp"
+#include "new_kernel32__LoadModule.cpp"
+#include "new_kernel32__GetProcAddress.cpp"

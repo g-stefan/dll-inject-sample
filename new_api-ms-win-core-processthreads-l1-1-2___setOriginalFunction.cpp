@@ -1,0 +1,1 @@
+XYO::Win::Inject::Hook::setOriginalFunction(_hook_api_ms_win_core_processthreads_l1_1_2__CreateProcessW,"api-ms-win-core-processthreads-l1-1-2","CreateProcessW",(FARPROC)_new_api_ms_win_core_processthreads_l1_1_2__CreateProcessW);

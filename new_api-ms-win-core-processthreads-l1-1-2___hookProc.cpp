@@ -1,0 +1,1 @@
+&_hook_api_ms_win_core_processthreads_l1_1_2__CreateProcessW,

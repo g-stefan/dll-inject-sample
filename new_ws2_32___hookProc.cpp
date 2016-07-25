@@ -1,0 +1,8 @@
+&_hook_ws2_32__connect,
+&_hook_ws2_32__recv,
+&_hook_ws2_32__WSAConnect,
+&_hook_ws2_32__send,
+&_hook_ws2_32__bind,
+&_hook_ws2_32__WSARecv,
+&_hook_ws2_32__WSASend,
+&_hook_ws2_32__WSAGetOverlappedResult,
