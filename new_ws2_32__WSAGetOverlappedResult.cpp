@@ -1,7 +1,7 @@
 static BOOL WSAAPI _new_ws2_32__WSAGetOverlappedResult(SOCKET s,LPWSAOVERLAPPED lpOverlapped,LPDWORD lpcbTransfer,BOOL fWait,LPDWORD lpdwFlags){
 BOOL retV;
 
-	OutputDebugStringA("ws2_32.WSAGetOverlappedResult");
+//	OutputDebugStringA("ws2_32.WSAGetOverlappedResult");
 
 	retV=_original_ws2_32__WSAGetOverlappedResult(s,lpOverlapped,lpcbTransfer,fWait,lpdwFlags);
 	DWORD errCode=GetLastError();

@@ -55,6 +55,7 @@ static void OutputDebugStringZA(const char *text1,HMODULE hmodule,const char *te
 	OutputDebugStringA(buf);
 };
 
+#include "libxyo-xy.hpp"
 #include "libxyo-win-inject.hpp"
 
 #include "dll-inject-sample-copyright.hpp"
@@ -82,8 +83,8 @@ typedef struct SHookProcess{
 	LPWSAOVERLAPPED WSASend_lpOverlapped;
 
 	//
-	FILE *recvLog;
-	FILE *sendLog;
+	//FILE *recvLog;
+	//FILE *sendLog;
 
 }HookProcess;
 
@@ -100,19 +101,19 @@ static HookProcess *newHookProcess(){
 	//
 	//
 	
-	char name[128];
-	wsprintf(name,"c:\\tmp\\recv-%p.bin",GetCurrentThreadId());
-	hookProcess->recvLog=fopen(name,"ab");
-	OutputDebugStringA(name);
-	wsprintf(name,"c:\\tmp\\send-%p.bin",GetCurrentThreadId());
-	hookProcess->sendLog=fopen(name,"ab");
-	OutputDebugStringA(name);	
+	//char name[128];
+	//wsprintf(name,"c:\\tmp\\recv-%p.bin",GetCurrentThreadId());
+	//hookProcess->recvLog=fopen(name,"ab");
+	//OutputDebugStringA(name);
+	//wsprintf(name,"c:\\tmp\\send-%p.bin",GetCurrentThreadId());
+	//hookProcess->sendLog=fopen(name,"ab");
+	//OutputDebugStringA(name);	
 	return hookProcess;
 };
 
 static void deleteHookProcess(HookProcess *hookProcess){
-	fclose(hookProcess->recvLog);
-	fclose(hookProcess->sendLog);
+//	fclose(hookProcess->recvLog);
+//	fclose(hookProcess->sendLog);
 	delete hookProcess;
 };
 
@@ -135,17 +136,17 @@ static HookProcess *getHookProcess(){
 static void recvHookProcess(HookProcess *hookProcess,char *buf,size_t len){
 	checkHookProcess(hookProcess);
 
-	OutputDebugStringA("recvHookProcess");
-	fwrite(buf,1,len,hookProcess->recvLog);
-	fflush(hookProcess->recvLog);
+	//OutputDebugStringA("recvHookProcess");
+	//fwrite(buf,1,len,hookProcess->recvLog);
+	//fflush(hookProcess->recvLog);
 };
 
 static void sendHookProcess(HookProcess *hookProcess,const char *buf,size_t len){
 	checkHookProcess(hookProcess);
 
-	OutputDebugStringA("sendHookProcess");
-	fwrite(buf,1,len,hookProcess->sendLog);
-	fflush(hookProcess->recvLog);
+	//OutputDebugStringA("sendHookProcess");
+	//fwrite(buf,1,len,hookProcess->sendLog);
+	//fflush(hookProcess->recvLog);
 };
 
 typedef FARPROC (WINAPI *PGetProcAddress)(HMODULE hModule,LPCSTR lpProcName);
@@ -196,11 +197,37 @@ static void setOriginalFunction(){
 
 FARPROC WINAPI hook_GetProcAddress(FARPROC originalPorc,HMODULE hModule,LPCSTR lpProcName) {
 FARPROC retV;
-	retV=XYO::Win::Inject::Hook::getProcAddress(hModule,lpProcName,hookList);
-	if(retV!=nullptr){
-		return retV;
-	};
-	return (*((PGetProcAddress)originalPorc))(hModule,lpProcName);
+	//retV=XYO::Win::Inject::Hook::getProcAddress(hModule,lpProcName,hookList);
+	//if(retV!=nullptr){
+	//	return retV;
+	//};
+	//return (*((PGetProcAddress)originalPorc))(hModule,lpProcName);
+
+	retV=(*((PGetProcAddress)originalPorc))(hModule,lpProcName);
+
+	//OutputDebugStringA(lpProcName);
+
+XYO::Win::Inject::Hook::HookProc **scanList;
+	for(scanList=hookList; *scanList!=nullptr; ++scanList) {
+		if(retV == (FARPROC)(*scanList)->originalProc) {
+			OutputDebugStringA("---original---");
+			OutputDebugStringA((*scanList)->procName);
+			if(XYO::XY::StringCore::compareIgnoreCaseAscii((*scanList)->procName,"LoadLibraryW")==0) {
+				OutputDebugStringA("---replaced---");
+				return (*scanList)->newProc;
+			};
+			if(XYO::XY::StringCore::compareIgnoreCaseAscii((*scanList)->procName,"LoadLibraryExW")==0) {
+				OutputDebugStringA("---replaced---");
+				return (*scanList)->newProc;
+			};
+		};
+		if(retV == (FARPROC)(*scanList)->newProc) {
+			OutputDebugStringA("---new---");
+			OutputDebugStringA((*scanList)->procName);
+		};
+	};	
+
+	return retV;
 };
 
 static LPSTR dllHookSkip[]= {
@@ -228,7 +255,7 @@ BOOL APIENTRY DllMain (HINSTANCE hInstance,DWORD reason,LPVOID reserved) {
 	hInstance;
 	switch(reason) {
 		case DLL_PROCESS_ATTACH: {
-				OutputDebugString("DLL_PROCESS_ATTACH");
+				//OutputDebugString("DLL_PROCESS_ATTACH");
 				if(!isAttached) {
 					isAttached=TRUE;
 					loadedModulesSp=0;
@@ -255,17 +282,17 @@ BOOL APIENTRY DllMain (HINSTANCE hInstance,DWORD reason,LPVOID reserved) {
 			};
 			break;
 		case DLL_PROCESS_DETACH: {
-				OutputDebugString("DLL_PROCESS_DETACH");
+				//OutputDebugString("DLL_PROCESS_DETACH");
 				TlsFree(tlsIndex);
 			};
 			break;
 		case DLL_THREAD_ATTACH: {
-				OutputDebugString("DLL_THREAD_ATTACH");
+				//OutputDebugString("DLL_THREAD_ATTACH");
 				TlsSetValue(tlsIndex,newHookProcess());
 			};
 			break;
 		case DLL_THREAD_DETACH: {
-				OutputDebugString("DLL_THREAD_DETACH");
+				//OutputDebugString("DLL_THREAD_DETACH");
 				deleteHookProcess((HookProcess *)TlsGetValue(tlsIndex));
 			};
 			break;
