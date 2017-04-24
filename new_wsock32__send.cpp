@@ -1,4 +1,4 @@
-static int WSAAPI _new_wsock32__send(SOCKET s,const char* buf,int len,int flags){
+static int WSAAPI _new_wsock32__send(SOCKET s,const char *buf,int len,int flags) {
 	int retV;
 
 //	OutputDebugStringA("wsock32.send");
@@ -6,7 +6,7 @@ static int WSAAPI _new_wsock32__send(SOCKET s,const char* buf,int len,int flags)
 	retV=(*_original_wsock32__send)(s,buf,len,flags);
 	DWORD errCode=GetLastError();
 
-	if(retV>0){
+	if(retV>0) {
 		sendHookProcess(getHookProcess(),buf,retV);
 	};
 

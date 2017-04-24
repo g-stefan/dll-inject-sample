@@ -1,5 +1,5 @@
-static int WSAAPI _new_ws2_32__WSARecv(SOCKET s,LPWSABUF lpBuffers,DWORD dwBufferCount,LPDWORD lpNumberOfBytesRecvd,LPDWORD lpFlags,LPWSAOVERLAPPED lpOverlapped,LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine){
-int retV;
+static int WSAAPI _new_ws2_32__WSARecv(SOCKET s,LPWSABUF lpBuffers,DWORD dwBufferCount,LPDWORD lpNumberOfBytesRecvd,LPDWORD lpFlags,LPWSAOVERLAPPED lpOverlapped,LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine) {
+	int retV;
 
 //	OutputDebugStringA("ws2_32.WSARecv");
 
@@ -11,7 +11,7 @@ int retV;
 	hookProcess->WSARecv_lpBuffers=lpBuffers;
 	hookProcess->WSARecv_dwBufferCount=dwBufferCount;
 	hookProcess->WSARecv_lpOverlapped=lpOverlapped;
-	
+
 	SetLastError(errCode);
 	return retV;
 };

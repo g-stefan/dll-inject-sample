@@ -1,4 +1,4 @@
-static HINSTANCE WINAPI _new_api_ms_win_core_libraryloader_l1_2_0__LoadLibraryExW(const wchar_t *lpLibFileName,HANDLE hFile,DWORD dwFlags){
+static HINSTANCE WINAPI _new_api_ms_win_core_libraryloader_l1_2_0__LoadLibraryExW(const wchar_t *lpLibFileName,HANDLE hFile,DWORD dwFlags) {
 	HINSTANCE retV;
 
 	//OutputDebugStringXW(L"core.LoadLibraryExW:",lpLibFileName);

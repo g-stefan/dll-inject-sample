@@ -1,4 +1,4 @@
-static HINSTANCE WINAPI _new_kernelbase__LoadLibraryExA(const char *lpLibFileName,HANDLE hFile,DWORD dwFlags){
+static HINSTANCE WINAPI _new_kernelbase__LoadLibraryExA(const char *lpLibFileName,HANDLE hFile,DWORD dwFlags) {
 	HINSTANCE retV;
 
 	//OutputDebugStringXA("kernel32.LoadLibraryExA:",lpLibFileName);

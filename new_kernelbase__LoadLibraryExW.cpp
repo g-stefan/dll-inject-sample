@@ -1,4 +1,4 @@
-static HINSTANCE WINAPI _new_kernelbase__LoadLibraryExW(const wchar_t *lpLibFileName,HANDLE hFile,DWORD dwFlags){
+static HINSTANCE WINAPI _new_kernelbase__LoadLibraryExW(const wchar_t *lpLibFileName,HANDLE hFile,DWORD dwFlags) {
 	HINSTANCE retV;
 
 	//OutputDebugStringXW(L"kernel32.LoadLibraryExW:",lpLibFileName);

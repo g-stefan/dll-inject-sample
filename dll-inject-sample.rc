@@ -7,9 +7,9 @@
 // The MIT License (MIT) <http://opensource.org/licenses/MIT>
 //
 
-#include "xyo-xy-version--os-win-rc.hpp"
+#include "xyo-xy-application-version--os-win-rc.hpp"
 #include "dll-inject-sample-version.hpp"
 #include "dll-inject-sample-copyright.hpp"
 
-XYO_XY_VERSION_INFO(DLL_INJECT_SAMPLE,"dll-inject-sample.dll","Dll Inject Sample");
+XYO_XY_APPLICATION_VERSION_INFO(DLL_INJECT_SAMPLE,"dll-inject-sample.dll","Dll Inject Sample");
 

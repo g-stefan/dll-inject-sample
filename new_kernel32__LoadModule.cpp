@@ -5,7 +5,7 @@ typedef struct tagLOADPARMS32 {
 	DWORD dwReserved;    // must be zero
 } LOADPARMS32;
 
-static DWORD WINAPI _new_kernel32__LoadModule(LPCSTR lpModuleName,LPVOID lpParameterBlock){
+static DWORD WINAPI _new_kernel32__LoadModule(LPCSTR lpModuleName,LPVOID lpParameterBlock) {
 	DWORD retV;
 	STARTUPINFO         sInfo;
 	PROCESS_INFORMATION pInfo;

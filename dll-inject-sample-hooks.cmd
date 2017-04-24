@@ -72,3 +72,9 @@ del /F /Q new_ws2_32___proc.cpp
 %GEN% ws2_32 WSAAPI int WSASend    "SOCKET s,LPWSABUF lpBuffers,DWORD dwBufferCount,LPDWORD lpNumberOfBytesSent,DWORD dwFlags,LPWSAOVERLAPPED lpOverlapped,LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine"
 %GEN% ws2_32 WSAAPI BOOL WSAGetOverlappedResult "SOCKET s,LPWSAOVERLAPPED lpOverlapped,LPDWORD lpcbTransfer,BOOL fWait,LPDWORD lpdwFlags"
 
+del /F /Q new_advapi32.cpp
+del /F /Q new_advapi32___setOriginalFunction.cpp
+del /F /Q new_advapi32___hookProc.cpp
+del /F /Q new_advapi32___proc.cpp
+%GEN% advapi32 WINAPI BOOL CreateProcessAsUserA "HANDLE hToken,LPCTSTR lpApplicationName,LPTSTR lpCommandLine,LPSECURITY_ATTRIBUTES lpProcessAttributes,LPSECURITY_ATTRIBUTES lpThreadAttributes,BOOL bInheritHandles,DWORD dwCreationFlags,LPVOID lpEnvironment,LPCTSTR lpCurrentDirectory,LPSTARTUPINFO lpStartupInfo,LPPROCESS_INFORMATION lpProcessInformation"
+%GEN% advapi32 WINAPI BOOL CreateProcessAsUserW "HANDLE hToken,LPCTSTR lpApplicationName,LPTSTR lpCommandLine,LPSECURITY_ATTRIBUTES lpProcessAttributes,LPSECURITY_ATTRIBUTES lpThreadAttributes,BOOL bInheritHandles,DWORD dwCreationFlags,LPVOID lpEnvironment,LPCTSTR lpCurrentDirectory,LPSTARTUPINFO lpStartupInfo,LPPROCESS_INFORMATION lpProcessInformation"

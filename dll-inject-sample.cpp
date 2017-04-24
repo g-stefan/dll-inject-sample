@@ -68,9 +68,9 @@ static HINSTANCE        thisModule;
 static size_t           loadedModulesSp;
 static HMODULE          loadedModules[16384];
 static void             thisHookInstance(HMODULE hInstance);
-static DWORD		tlsIndex;
+static DWORD            tlsIndex;
 //
-typedef struct SHookProcess{
+typedef struct SHookProcess {
 
 	//WSARecv
 	LPWSABUF WSARecv_lpBuffers;
@@ -86,9 +86,9 @@ typedef struct SHookProcess{
 	//FILE *recvLog;
 	//FILE *sendLog;
 
-}HookProcess;
+} HookProcess;
 
-static HookProcess *newHookProcess(){
+static HookProcess *newHookProcess() {
 	HookProcess *hookProcess=new HookProcess();
 	//
 	hookProcess->WSARecv_lpBuffers=nullptr;
@@ -100,40 +100,40 @@ static HookProcess *newHookProcess(){
 	hookProcess->WSASend_lpOverlapped=nullptr;
 	//
 	//
-	
+
 	//char name[128];
 	//wsprintf(name,"c:\\tmp\\recv-%p.bin",GetCurrentThreadId());
 	//hookProcess->recvLog=fopen(name,"ab");
 	//OutputDebugStringA(name);
 	//wsprintf(name,"c:\\tmp\\send-%p.bin",GetCurrentThreadId());
 	//hookProcess->sendLog=fopen(name,"ab");
-	//OutputDebugStringA(name);	
+	//OutputDebugStringA(name);
 	return hookProcess;
 };
 
-static void deleteHookProcess(HookProcess *hookProcess){
+static void deleteHookProcess(HookProcess *hookProcess) {
 //	fclose(hookProcess->recvLog);
 //	fclose(hookProcess->sendLog);
 	delete hookProcess;
 };
 
-static void checkHookProcess(HookProcess *&hookProcess){
-	if(hookProcess==nullptr){
+static void checkHookProcess(HookProcess *&hookProcess) {
+	if(hookProcess==nullptr) {
 		hookProcess=newHookProcess();
 		TlsSetValue(tlsIndex,hookProcess);
 	};
 };
 
-static HookProcess *getHookProcess(){
+static HookProcess *getHookProcess() {
 	HookProcess *hookProcess=((HookProcess *)TlsGetValue(tlsIndex));
-	if(hookProcess==nullptr){
+	if(hookProcess==nullptr) {
 		hookProcess=newHookProcess();
 		TlsSetValue(tlsIndex,hookProcess);
 	};
 	return hookProcess;
 };
 
-static void recvHookProcess(HookProcess *hookProcess,char *buf,size_t len){
+static void recvHookProcess(HookProcess *hookProcess,char *buf,size_t len) {
 	checkHookProcess(hookProcess);
 
 	//OutputDebugStringA("recvHookProcess");
@@ -141,7 +141,7 @@ static void recvHookProcess(HookProcess *hookProcess,char *buf,size_t len){
 	//fflush(hookProcess->recvLog);
 };
 
-static void sendHookProcess(HookProcess *hookProcess,const char *buf,size_t len){
+static void sendHookProcess(HookProcess *hookProcess,const char *buf,size_t len) {
 	checkHookProcess(hookProcess);
 
 	//OutputDebugStringA("sendHookProcess");
@@ -167,8 +167,10 @@ static FARPROC WINAPI hook_GetProcAddress(FARPROC originalPorc,HMODULE hModule,L
 #include "new_ws2_32___proc.cpp"
 #include "new_wsock32.cpp"
 #include "new_wsock32___proc.cpp"
+#include "new_advapi32.cpp"
+#include "new_advapi32___proc.cpp"
 
-static XYO::Win::Inject::Hook::HookProc *hookList[]={
+static XYO::Win::Inject::Hook::HookProc *hookList[]= {
 //
 #include "new_kernel32___hookProc.cpp"
 #include "new_kernelbase___hookProc.cpp"
@@ -178,13 +180,14 @@ static XYO::Win::Inject::Hook::HookProc *hookList[]={
 #include "new_wininet___hookProc.cpp"
 #include "new_ws2_32___hookProc.cpp"
 #include "new_wsock32___hookProc.cpp"
+#include "new_advapi32___hookProc.cpp"
 //
 
 //
-	nullptr 
+	nullptr
 };
 
-static void setOriginalFunction(){
+static void setOriginalFunction() {
 #include "new_kernel32___setOriginalFunction.cpp"
 #include "new_kernelbase___setOriginalFunction.cpp"
 #include "new_api-ms-win-core-libraryloader-l1-2-0___setOriginalFunction.cpp"
@@ -193,13 +196,14 @@ static void setOriginalFunction(){
 #include "new_wininet___setOriginalFunction.cpp"
 #include "new_ws2_32___setOriginalFunction.cpp"
 #include "new_wsock32___setOriginalFunction.cpp"
+#include "new_advapi32___setOriginalFunction.cpp"
 };
 
 FARPROC WINAPI hook_GetProcAddress(FARPROC originalPorc,HMODULE hModule,LPCSTR lpProcName) {
-FARPROC retV;
+	FARPROC retV;
 	//retV=XYO::Win::Inject::Hook::getProcAddress(hModule,lpProcName,hookList);
 	//if(retV!=nullptr){
-	//	return retV;
+	//      return retV;
 	//};
 	//return (*((PGetProcAddress)originalPorc))(hModule,lpProcName);
 
@@ -207,7 +211,7 @@ FARPROC retV;
 
 	//OutputDebugStringA(lpProcName);
 
-XYO::Win::Inject::Hook::HookProc **scanList;
+	XYO::Win::Inject::Hook::HookProc **scanList;
 	for(scanList=hookList; *scanList!=nullptr; ++scanList) {
 		if(retV == (FARPROC)(*scanList)->originalProc) {
 			OutputDebugStringA("---original---");
@@ -225,7 +229,7 @@ XYO::Win::Inject::Hook::HookProc **scanList;
 			OutputDebugStringA("---new---");
 			OutputDebugStringA((*scanList)->procName);
 		};
-	};	
+	};
 
 	return retV;
 };
@@ -242,7 +246,7 @@ static LPSTR dllHookSkip[]= {
 };
 
 static void thisHookInstance(HMODULE hInstance) {
-	if(XYO::Win::Inject::Hook::processModule(hInstance,hookList,loadedModules,loadedModulesSp,16380,dllHookSkip)){	
+	if(XYO::Win::Inject::Hook::processModule(hInstance,hookList,loadedModules,loadedModulesSp,16380,dllHookSkip)) {
 		char buf[MAX_PATH];
 		GetModuleFileName(hInstance,buf,MAX_PATH);
 		OutputDebugStringXA("#hook: ",buf);
@@ -263,11 +267,11 @@ BOOL APIENTRY DllMain (HINSTANCE hInstance,DWORD reason,LPVOID reserved) {
 					GetModuleFileName(NULL,thisProcessFileName,MAX_PATH);
 					GetModuleFileNameA(hInstance,thisModuleFileName,MAX_PATH);
 					tlsIndex=TlsAlloc();
-					if(tlsIndex==TLS_OUT_OF_INDEXES){
+					if(tlsIndex==TLS_OUT_OF_INDEXES) {
 						return FALSE;
 					};
 					setOriginalFunction();
-                                        //DisableThreadLibraryCalls((HMODULE)hInstance);
+					//DisableThreadLibraryCalls((HMODULE)hInstance);
 
 					//
 
