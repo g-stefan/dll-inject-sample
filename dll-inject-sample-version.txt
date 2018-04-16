@@ -1,4 +1,0 @@
-build=32
-date=2017-04-25
-time=00:16:56
-version=2.0.0

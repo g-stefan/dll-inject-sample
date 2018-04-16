@@ -1,15 +1,15 @@
 //
 // Dll Inject Sample
 //
-// Copyright (c) 2014 Grigore Stefan, <g_stefan@yahoo.com>
+// Copyright (c) 2018 Grigore Stefan <g_stefan@yahoo.com>
 // Created by Grigore Stefan <g_stefan@yahoo.com>
 //
-// The MIT License (MIT) <http://opensource.org/licenses/MIT>
+// MIT License (MIT) <http://opensource.org/licenses/MIT>
 //
 
-#include "xyo-xy-application-version--os-win-rc.hpp"
+#include "xyo-core-application-version--os-win-rc.hpp"
 #include "dll-inject-sample-version.hpp"
 #include "dll-inject-sample-copyright.hpp"
 
-XYO_XY_APPLICATION_VERSION_INFO(DLL_INJECT_SAMPLE,"dll-inject-sample.dll","Dll Inject Sample");
+XYO_CORE_APPLICATION_VERSION_INFO(DLL_INJECT_SAMPLE,"dll-inject-sample.dll","Dll Inject Sample");
 

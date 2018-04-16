@@ -1,10 +1,10 @@
 //
 // Dll Inject Sample
 //
-// Copyright (c) 2014 Grigore Stefan, <g_stefan@yahoo.com>
+// Copyright (c) 2018 Grigore Stefan <g_stefan@yahoo.com>
 // Created by Grigore Stefan <g_stefan@yahoo.com>
 //
-// The MIT License (MIT) <http://opensource.org/licenses/MIT>
+// MIT License (MIT) <http://opensource.org/licenses/MIT>
 //
 
 #include <stdio.h>
@@ -55,11 +55,11 @@ static void OutputDebugStringZA(const char *text1,HMODULE hmodule,const char *te
 	OutputDebugStringA(buf);
 };
 
-#include "libxyo-xy.hpp"
+#include "libxyo-core.hpp"
 #include "libxyo-win-inject.hpp"
 
 #include "dll-inject-sample-copyright.hpp"
-#include "dll-inject-sample-licence.hpp"
+#include "dll-inject-sample-license.hpp"
 #include "dll-inject-sample-version.hpp"
 
 static char             thisProcessFileName[MAX_PATH];
@@ -216,11 +216,11 @@ FARPROC WINAPI hook_GetProcAddress(FARPROC originalPorc,HMODULE hModule,LPCSTR l
 		if(retV == (FARPROC)(*scanList)->originalProc) {
 			OutputDebugStringA("---original---");
 			OutputDebugStringA((*scanList)->procName);
-			if(XYO::XY::StringCore::compareIgnoreCaseAscii((*scanList)->procName,"LoadLibraryW")==0) {
+			if(XYO::Core::StringCore::compareIgnoreCaseAscii((*scanList)->procName,"LoadLibraryW")==0) {
 				OutputDebugStringA("---replaced---");
 				return (*scanList)->newProc;
 			};
-			if(XYO::XY::StringCore::compareIgnoreCaseAscii((*scanList)->procName,"LoadLibraryExW")==0) {
+			if(XYO::Core::StringCore::compareIgnoreCaseAscii((*scanList)->procName,"LoadLibraryExW")==0) {
 				OutputDebugStringA("---replaced---");
 				return (*scanList)->newProc;
 			};

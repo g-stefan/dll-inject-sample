@@ -1,21 +1,21 @@
 //
 // Dll Inject Sample
 //
-// Copyright (c) 2014 Grigore Stefan, <g_stefan@yahoo.com>
+// Copyright (c) 2018 Grigore Stefan <g_stefan@yahoo.com>
 // Created by Grigore Stefan <g_stefan@yahoo.com>
 //
-// The MIT License (MIT) <http://opensource.org/licenses/MIT>
+// MIT License (MIT) <http://opensource.org/licenses/MIT>
 //
 
 #include "dll-inject-sample-copyright.hpp"
 
 namespace DllInjectSample {
 
-	static const char *copyright_ = "Copyright (C) Grigore Stefan.";
+	static const char *copyright_ = "Copyright (c) Grigore Stefan";
 	static const char *publisher_ = "Grigore Stefan";
 	static const char *company_ = "Grigore Stefan";
 	static const char *contact_ = "g_stefan@yahoo.com";
-	static const char *fullCopyright_ = "Copyright (C) Grigore Stefan. <g_stefan@yahoo.com>";
+	static const char *fullCopyright_ = "Copyright (c) Grigore Stefan <g_stefan@yahoo.com>";
 
 	const char *Copyright::copyright() {
 		return copyright_;

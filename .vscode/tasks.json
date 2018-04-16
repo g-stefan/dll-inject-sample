@@ -1,0 +1,83 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build - Release - Win64 MSVC",
+            "type": "shell",
+            "command": "cmd.exe /c build.msvc.cmd win64",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Build - Release - Win32 MSVC",
+            "type": "shell",
+            "command": "cmd.exe /c build.msvc.cmd win32",
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Build - Debug - Win64 MSVC",
+            "type": "shell",
+            "command": "cmd.exe /c build.msvc.cmd win64 debug",
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Build - Debug - Win32 MSVC",
+            "type": "shell",
+            "command": "cmd.exe /c build.msvc.cmd win32 debug",
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Clean - MSVC",
+            "type": "shell",
+            "command": "cmd.exe /c build.msvc.cmd clean",
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Version - Win64 MSVC",
+            "type": "shell",
+            "command": "cmd.exe /c build.msvc.cmd win64 version",
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Version - Win32 MSVC",
+            "type": "shell",
+            "command": "cmd.exe /c build.msvc.cmd win32 version",
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Install - Win64 MSVC",
+            "type": "shell",
+            "command": "cmd.exe /c build.msvc.cmd win64 install",
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Install - Win32 MSVC",
+            "type": "shell",
+            "command": "cmd.exe /c build.msvc.cmd win32 install",
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        }
+    ]
+}

@@ -11,10 +11,10 @@
 
 namespace DllInjectSample {
 
-	static const char *versionVersion="1.0.0";
-	static const char *versionBuild="33";
-	static const char *versionVersionWithBuild="1.0.0.33";
-	static const char *versionDatetime="2018-04-16 13:04:23";
+	static const char *versionVersion="%VERSION_VERSION%";
+	static const char *versionBuild="%VERSION_BUILD%";
+	static const char *versionVersionWithBuild="%VERSION_VERSION%.%VERSION_BUILD%";
+	static const char *versionDatetime="%VERSION_DATETIME%";
 
 	const char *Version::getVersion() {
 		return versionVersion;

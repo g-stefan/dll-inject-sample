@@ -1,0 +1,39 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "intelliSenseMode": "msvc-x64",
+            "includePath": [                
+                "${workspaceRoot}",
+                "${workspaceRoot}/../.repository/win64-msvc/include/libxyo-core",
+                "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.11.25503/ATLMFC/include",
+                "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.11.25503/include",
+                "C:/Program Files (x86)/Windows Kits/NETFXSDK/4.6.1/include/um",
+                "C:/Program Files (x86)/Windows Kits/10/include/10.0.16299.0/ucrt",
+                "C:/Program Files (x86)/Windows Kits/10/include/10.0.16299.0/shared",
+                "C:/Program Files (x86)/Windows Kits/10/include/10.0.16299.0/um",
+                "C:/Program Files (x86)/Windows Kits/10/include/10.0.16299.0/winrt"
+            ],
+            "defines": [
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceRoot}",
+                    "${workspaceRoot}/../.repository/win64-msvc/include/libxyo-core",
+                    "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.11.25503/ATLMFC/include",
+                    "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.11.25503/include",
+                    "C:/Program Files (x86)/Windows Kits/NETFXSDK/4.6.1/include/um",
+                    "C:/Program Files (x86)/Windows Kits/10/include/10.0.16299.0/ucrt",
+                    "C:/Program Files (x86)/Windows Kits/10/include/10.0.16299.0/shared",
+                    "C:/Program Files (x86)/Windows Kits/10/include/10.0.16299.0/um",
+                    "C:/Program Files (x86)/Windows Kits/10/include/10.0.16299.0/winrt"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 3
+}

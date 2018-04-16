@@ -1,19 +1,19 @@
 //
 // Dll Inject Sample
 //
-// Copyright (c) 2014 Grigore Stefan, <g_stefan@yahoo.com>
+// Copyright (c) 2018 Grigore Stefan <g_stefan@yahoo.com>
 // Created by Grigore Stefan <g_stefan@yahoo.com>
 //
-// The MIT License (MIT) <http://opensource.org/licenses/MIT>
+// MIT License (MIT) <http://opensource.org/licenses/MIT>
 //
 
-#ifndef DLL_INJECT_SAMPLE_LICENCE_HPP
-#define DLL_INJECT_SAMPLE_LICENCE_HPP
+#ifndef DLL_INJECT_SAMPLE_LICENSE_HPP
+#define DLL_INJECT_SAMPLE_LICENSE_HPP
 
 
 namespace DllInjectSample {
 
-	class Licence {
+	class License {
 		public:
 			static const char *content();
 			static const char *shortContent();

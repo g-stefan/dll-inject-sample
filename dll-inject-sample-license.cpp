@@ -1,21 +1,21 @@
 //
 // Dll Inject Sample
 //
-// Copyright (c) 2014 Grigore Stefan, <g_stefan@yahoo.com>
+// Copyright (c) 2018 Grigore Stefan <g_stefan@yahoo.com>
 // Created by Grigore Stefan <g_stefan@yahoo.com>
 //
-// The MIT License (MIT) <http://opensource.org/licenses/MIT>
+// MIT License (MIT) <http://opensource.org/licenses/MIT>
 //
 
-#include "dll-inject-sample-licence.hpp"
+#include "dll-inject-sample-license.hpp"
 
 namespace DllInjectSample {
 
-	static const char *licence_ =
+	static const char *license_ =
 		"\r\n"
-		"The MIT License (MIT)\r\n"
+		"MIT License (MIT)\r\n"
 		"\r\n"
-		"Copyright (c) 2014 Grigore Stefan, <g_stefan@yahoo.com>\r\n"
+		"Copyright (c) 2018 Grigore Stefan <g_stefan@yahoo.com>\r\n"
 		"\r\n"
 		"Permission is hereby granted, free of charge, to any person obtaining a copy of\r\n"
 		"this software and associated documentation files (the \"Software\"), to deal in\r\n"
@@ -35,18 +35,18 @@ namespace DllInjectSample {
 		"CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\r\n"
 		"\r\n";
 
-	static const char *shortLicence_ =
+	static const char *shortLicense_ =
 		"\r\n"
-		"Copyright (c) 2014 Grigore Stefan, <g_stefan@yahoo.com>\r\n"
-		"The MIT License (MIT) <http://opensource.org/licenses/MIT>\r\n"
+		"Copyright (c) 2018 Grigore Stefan <g_stefan@yahoo.com>\r\n"
+		"MIT License (MIT) <http://opensource.org/licenses/MIT>\r\n"
 		"\r\n";
 
-	const char *Licence::content() {
-		return licence_;
+	const char *License::content() {
+		return license_;
 	};
 
-	const char *Licence::shortContent() {
-		return shortLicence_;
+	const char *License::shortContent() {
+		return shortLicense_;
 	};
 
 };

@@ -1,0 +1,22 @@
+{
+    "cSpell.words": [
+        "Grigore",
+        "libxyo"
+    ],
+    "files.associations": {
+        "iosfwd": "cpp",
+        "xstring": "cpp",
+        "xfunctional": "cpp",
+        "xtr1common": "cpp",
+        "initializer_list": "cpp",
+        "list": "cpp",
+        "vector": "cpp",
+        "xhash": "cpp",
+        "xutility": "cpp",
+        "memory": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp"
+    },
+    "better-comments.multilineComments": true
+}
