@@ -41,6 +41,8 @@ rem --- </core>
 
 rem --- <make>
 
+echo ^> dll-inject-sample ^<
+
 set XYO_CC=%XYO_PATH_REPOSITORY%\bin\xyo-cc.exe
 
 %XYO_CC% --mode=%ACTION% --dll dll-inject-sample --no-def-dynamic-link --no-lib --inc=. --use-project=libxyo-win-inject.static
