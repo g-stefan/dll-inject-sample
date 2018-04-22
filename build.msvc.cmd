@@ -1,4 +1,7 @@
 @echo off
+
+echo ^> dll-inject-sample ^<
+
 rem --- <core>
 
 if not "%1" == "clean" goto SelectPlatform
@@ -40,8 +43,6 @@ set XYO_PATH_REPOSITORY=..\.repository\%XYO_PLATFORM%
 rem --- </core>
 
 rem --- <make>
-
-echo ^> dll-inject-sample ^<
 
 set XYO_CC=%XYO_PATH_REPOSITORY%\bin\xyo-cc.exe
 
