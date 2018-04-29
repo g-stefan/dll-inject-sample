@@ -1,14 +1,9 @@
 @echo off
 
-echo ^> dll-inject-sample ^<
-
-rem --- <core>
+rem --- core
 
 if not "%1" == "clean" goto SelectPlatform
-rmdir /Q /S bin
-rmdir /Q /S build
-rmdir /Q /S lib
-echo ^> clean done ^<
+call build.msvc.clean.cmd
 goto :eof
 
 :SelectPlatform
@@ -16,10 +11,14 @@ set ACTION=%1
 if "%XYO_PLATFORM%" == "win64-msvc" goto Build
 if "%XYO_PLATFORM%" == "win32-msvc" goto Build
 set ACTION=%2
-if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\" goto Error_MSVC
+if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\" goto NoPlatform
 if "%1" == "win64" goto Win64
 if "%1" == "win32" goto Win32
-goto Error_Unknown_Platform
+echo Error: uknown platorm please provide win32 or win64
+goto :eof
+:NoPlatform
+echo Error: not found - Microsoft Visual Studio 2017 Community
+goto :eof
 
 :Win64
 set XYO_PLATFORM=win64-msvc
@@ -36,29 +35,21 @@ popd
 goto Build
 
 :Build
-if not "%XYO_PATH_REPOSITORY%" == "" goto BuildStep
-set XYO_PATH_REPOSITORY=..\.repository\%XYO_PLATFORM%
-:BuildStep
+set RESTORE_PATH=%PATH%
+if not "%XYO_PATH_REPOSITORY%" == "" goto BuildStep1
+if not exist ..\.repository\ mkdir ..\.repository
+if not exist ..\.repository\%XYO_PLATFORM%\ mkdir ..\.repository\%XYO_PLATFORM%
+pushd ..\.repository\%XYO_PLATFORM%
+set XYO_PATH_REPOSITORY=%CD%
+popd
+:BuildStep1
+set PATH=%XYO_PATH_REPOSITORY%\bin;%PATH%
+if not exist bin\ goto BuildStep2
+pushd bin
+set PATH=%CD%;%PATH%
+popd
+:BuildStep2
 
-rem --- </core>
+call build.msvc.make.cmd
 
-rem --- <make>
-
-set XYO_CC=%XYO_PATH_REPOSITORY%\bin\xyo-cc.exe
-
-%XYO_CC% --mode=%ACTION% --dll dll-inject-sample --no-def-dynamic-link --no-lib --inc=. --use-project=libxyo-win-inject.static
-IF ERRORLEVEL 1 goto Error_Build
-if "%ACTION%" == "version" goto :eof
-goto :eof
-
-rem --- </make>
-
-:Error_Build
-echo Error: build
-goto :eof
-:Error_MSVC
-echo Error: not found - Microsoft Visual Studio 2017 Community
-goto :eof
-:Error_Unknown_Platform
-echo Error: uknown platorm please provide win32 or win64
-goto :eof
+set PATH=%RESTORE_PATH%
