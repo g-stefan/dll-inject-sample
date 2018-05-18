@@ -3,7 +3,7 @@
         {
             "name": "Win32",
             "intelliSenseMode": "msvc-x64",
-            "includePath": [                
+            "includePath": [
                 "${workspaceRoot}",
                 "${workspaceRoot}/../.repository/win64-msvc/include/libxyo-core",
                 "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.11.25503/ATLMFC/include",
@@ -14,8 +14,7 @@
                 "C:/Program Files (x86)/Windows Kits/10/include/10.0.16299.0/um",
                 "C:/Program Files (x86)/Windows Kits/10/include/10.0.16299.0/winrt"
             ],
-            "defines": [
-            ],
+            "defines": [],
             "browse": {
                 "path": [
                     "${workspaceRoot}",
@@ -35,5 +34,5 @@
             "cppStandard": "c++17"
         }
     ],
-    "version": 3
+    "version": 4
 }

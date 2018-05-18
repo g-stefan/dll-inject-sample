@@ -35,6 +35,7 @@ popd
 goto Build
 
 :Build
+if exist ..\build.msvc.config.cmd call ..\build.msvc.config.cmd
 set RESTORE_PATH=%PATH%
 if not "%XYO_PATH_REPOSITORY%" == "" goto BuildStep1
 if not exist ..\.repository\ mkdir ..\.repository
