@@ -14,7 +14,7 @@ set ACTION=%2
 if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\" goto NoPlatform
 if "%1" == "win64" goto Win64
 if "%1" == "win32" goto Win32
-echo Error: uknown platorm please provide win32 or win64
+echo Error: uknown platform please provide win32 or win64
 goto :eof
 :NoPlatform
 echo Error: not found - Microsoft Visual Studio 2017 Community
