@@ -1,4 +1,8 @@
 @echo off
+rem Public domain
+rem http://unlicense.org/
+rem Created by Grigore Stefan <g_stefan@yahoo.com>
+
 Set GEN=xyo-generate-hook.exe
 
 del /F /Q new_kernel32.cpp
