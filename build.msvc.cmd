@@ -11,6 +11,8 @@ goto :eof
 
 :SelectPlatform
 set ACTION=%1
+if "%1" == "win64" set ACTION=%2
+if "%1" == "win32" set ACTION=%2
 if "%XYO_PLATFORM%" == "win64-msvc" goto Build
 if "%XYO_PLATFORM%" == "win32-msvc" goto Build
 set ACTION=%2
