@@ -19,17 +19,13 @@
 #ifndef XYO_RC
 
 namespace DllInjectSample {
-
-	class Copyright {
-		public:
-			static const char *copyright();
-			static const char *publisher();
-			static const char *company();
-			static const char *contact();
-			static const char *fullCopyright();
-
+	namespace Copyright {
+		const char *copyright();
+		const char *publisher();
+		const char *company();
+		const char *contact();
+		const char *fullCopyright();
 	};
-
 };
 
 #endif

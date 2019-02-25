@@ -18,15 +18,12 @@
 #ifndef XYO_RC
 
 namespace DllInjectSample {
-
-	class Version {
-		public:
-			static const char *getVersion();
-			static const char *getBuild();
-			static const char *getVersionWithBuild();
-			static const char *getDatetime();
+	namespace Version {
+		const char *version();
+		const char *build();
+		const char *versionWithBuild();
+		const char *datetime();
 	};
-
 };
 
 #endif

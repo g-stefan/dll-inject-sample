@@ -12,13 +12,10 @@
 
 
 namespace DllInjectSample {
-
-	class License {
-		public:
-			static const char *content();
-			static const char *shortContent();
+	namespace License {
+		const char *content();
+		const char *shortContent();
 	};
-
 };
 
 #endif

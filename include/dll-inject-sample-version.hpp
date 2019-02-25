@@ -10,23 +10,20 @@
 #ifndef DLL_INJECT_SAMPLE_VERSION_HPP
 #define DLL_INJECT_SAMPLE_VERSION_HPP
 
-#define DLL_INJECT_SAMPLE_VERSION_ABCD                1,0,0,33
+#define DLL_INJECT_SAMPLE_VERSION_ABCD                1,0,0,35
 #define DLL_INJECT_SAMPLE_VERSION_STR                 "1.0.0"
-#define DLL_INJECT_SAMPLE_VERSION_STR_BUILD           "33"
-#define DLL_INJECT_SAMPLE_VERSION_STR_DATETIME        "2018-04-16 13:04:23"
+#define DLL_INJECT_SAMPLE_VERSION_STR_BUILD           "35"
+#define DLL_INJECT_SAMPLE_VERSION_STR_DATETIME        "2019-02-25 09:52:55"
 
 #ifndef XYO_RC
 
 namespace DllInjectSample {
-
-	class Version {
-		public:
-			static const char *getVersion();
-			static const char *getBuild();
-			static const char *getVersionWithBuild();
-			static const char *getDatetime();
+	namespace Version {
+		const char *version();
+		const char *build();
+		const char *versionWithBuild();
+		const char *datetime();
 	};
-
 };
 
 #endif
