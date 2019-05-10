@@ -9,8 +9,10 @@
 
 #include "dll-inject-sample-license.hpp"
 
-namespace DllInjectSample {
-	namespace License {
+namespace DllInjectSample
+{
+	namespace License
+	{
 
 		static const char *license_ =
 			"\r\n"
@@ -42,11 +44,13 @@ namespace DllInjectSample {
 			"MIT License (MIT) <http://opensource.org/licenses/MIT>\r\n"
 			"\r\n";
 
-		const char *content() {
+		const char *content()
+		{
 			return license_;
 		};
 
-		const char *shortContent() {
+		const char *shortContent()
+		{
 			return shortLicense_;
 		};
 

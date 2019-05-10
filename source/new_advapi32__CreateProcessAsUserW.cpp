@@ -1,4 +1,5 @@
-static BOOL WINAPI _new_advapi32__CreateProcessAsUserW(HANDLE hToken,LPCTSTR lpApplicationName,LPTSTR lpCommandLine,LPSECURITY_ATTRIBUTES lpProcessAttributes,LPSECURITY_ATTRIBUTES lpThreadAttributes,BOOL bInheritHandles,DWORD dwCreationFlags,LPVOID lpEnvironment,LPCTSTR lpCurrentDirectory,LPSTARTUPINFO lpStartupInfo,LPPROCESS_INFORMATION lpProcessInformation) {
+static BOOL WINAPI _new_advapi32__CreateProcessAsUserW(HANDLE hToken, LPCTSTR lpApplicationName, LPTSTR lpCommandLine, LPSECURITY_ATTRIBUTES lpProcessAttributes, LPSECURITY_ATTRIBUTES lpThreadAttributes, BOOL bInheritHandles, DWORD dwCreationFlags, LPVOID lpEnvironment, LPCTSTR lpCurrentDirectory, LPSTARTUPINFO lpStartupInfo, LPPROCESS_INFORMATION lpProcessInformation)
+{
 
 	//OutputDebugStringA("advapi32.CreateProcessAsUserW");
 
@@ -10,24 +11,26 @@ static BOOL WINAPI _new_advapi32__CreateProcessAsUserW(HANDLE hToken,LPCTSTR lpA
 	BOOL retV;
 	BOOL isSuspended;
 
-	isSuspended=((dwCreationFlags&CREATE_SUSPENDED)==CREATE_SUSPENDED);
-	retV=XYO::Win::Inject::Process::createProcessAsUserW(
-		     hToken,
-		     (WCHAR *)lpApplicationName,
-		     (WCHAR *)lpCommandLine,
-		     lpProcessAttributes,
-		     lpThreadAttributes,
-		     bInheritHandles,
-		     dwCreationFlags|CREATE_SUSPENDED,
-		     lpEnvironment,
-		     (WCHAR *)lpCurrentDirectory,
-		     (LPSTARTUPINFOW)lpStartupInfo,
-		     lpProcessInformation,
-		     thisModuleFileName
-	     );
+	isSuspended = ((dwCreationFlags & CREATE_SUSPENDED) == CREATE_SUSPENDED);
+	retV = XYO::Win::Inject::Process::createProcessAsUserW(
+			hToken,
+			(WCHAR *)lpApplicationName,
+			(WCHAR *)lpCommandLine,
+			lpProcessAttributes,
+			lpThreadAttributes,
+			bInheritHandles,
+			dwCreationFlags | CREATE_SUSPENDED,
+			lpEnvironment,
+			(WCHAR *)lpCurrentDirectory,
+			(LPSTARTUPINFOW)lpStartupInfo,
+			lpProcessInformation,
+			thisModuleFileName
+		);
 
-	if(retV==TRUE) {
-		if(!isSuspended) {
+	if(retV == TRUE)
+	{
+		if(!isSuspended)
+		{
 			ResumeThread(lpProcessInformation->hThread);
 		};
 	};

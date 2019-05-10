@@ -1,3 +1,3 @@
-XYO::Win::Inject::Hook::setOriginalFunction(_hook_api_ms_win_core_libraryloader_l1_2_0__LoadLibraryExA,"api-ms-win-core-libraryloader-l1-2-0","LoadLibraryExA",(FARPROC)_new_api_ms_win_core_libraryloader_l1_2_0__LoadLibraryExA);
-XYO::Win::Inject::Hook::setOriginalFunction(_hook_api_ms_win_core_libraryloader_l1_2_0__LoadLibraryExW,"api-ms-win-core-libraryloader-l1-2-0","LoadLibraryExW",(FARPROC)_new_api_ms_win_core_libraryloader_l1_2_0__LoadLibraryExW);
-XYO::Win::Inject::Hook::setOriginalFunction(_hook_api_ms_win_core_libraryloader_l1_2_0__GetProcAddress,"api-ms-win-core-libraryloader-l1-2-0","GetProcAddress",(FARPROC)_new_api_ms_win_core_libraryloader_l1_2_0__GetProcAddress);
+XYO::Win::Inject::Hook::setOriginalFunction(_hook_api_ms_win_core_libraryloader_l1_2_0__LoadLibraryExA, "api-ms-win-core-libraryloader-l1-2-0", "LoadLibraryExA", (FARPROC)_new_api_ms_win_core_libraryloader_l1_2_0__LoadLibraryExA);
+XYO::Win::Inject::Hook::setOriginalFunction(_hook_api_ms_win_core_libraryloader_l1_2_0__LoadLibraryExW, "api-ms-win-core-libraryloader-l1-2-0", "LoadLibraryExW", (FARPROC)_new_api_ms_win_core_libraryloader_l1_2_0__LoadLibraryExW);
+XYO::Win::Inject::Hook::setOriginalFunction(_hook_api_ms_win_core_libraryloader_l1_2_0__GetProcAddress, "api-ms-win-core-libraryloader-l1-2-0", "GetProcAddress", (FARPROC)_new_api_ms_win_core_libraryloader_l1_2_0__GetProcAddress);

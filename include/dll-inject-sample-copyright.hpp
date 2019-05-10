@@ -18,8 +18,10 @@
 
 #ifndef XYO_RC
 
-namespace DllInjectSample {
-	namespace Copyright {
+namespace DllInjectSample
+{
+	namespace Copyright
+	{
 		const char *copyright();
 		const char *publisher();
 		const char *company();

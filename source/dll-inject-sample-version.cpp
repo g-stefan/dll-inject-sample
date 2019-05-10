@@ -9,24 +9,30 @@
 
 #include "dll-inject-sample-version.hpp"
 
-namespace DllInjectSample {
-	namespace Version {
+namespace DllInjectSample
+{
+	namespace Version
+	{
 
-		static const char *version_="1.0.0";
-		static const char *build_="35";
-		static const char *versionWithBuild_="1.0.0.35";
-		static const char *datetime_="2019-02-25 09:52:55";
+		static const char *version_ = "1.0.0";
+		static const char *build_ = "37";
+		static const char *versionWithBuild_ = "1.0.0.37";
+		static const char *datetime_ = "2019-05-09 23:45:16";
 
-		const char *version() {
+		const char *version()
+		{
 			return version_;
 		};
-		const char *build() {
+		const char *build()
+		{
 			return build_;
 		};
-		const char *versionWithBuild() {
+		const char *versionWithBuild()
+		{
 			return versionWithBuild_;
 		};
-		const char *datetime() {
+		const char *datetime()
+		{
 			return datetime_;
 		};
 

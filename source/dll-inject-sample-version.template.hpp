@@ -10,15 +10,17 @@
 #ifndef DLL_INJECT_SAMPLE_VERSION_HPP
 #define DLL_INJECT_SAMPLE_VERSION_HPP
 
-#define DLL_INJECT_SAMPLE_VERSION_ABCD                %VERSION_ABCD%
-#define DLL_INJECT_SAMPLE_VERSION_STR                 "%VERSION_VERSION%"
-#define DLL_INJECT_SAMPLE_VERSION_STR_BUILD           "%VERSION_BUILD%"
-#define DLL_INJECT_SAMPLE_VERSION_STR_DATETIME        "%VERSION_DATETIME%"
+#define DLL_INJECT_SAMPLE_VERSION_ABCD                $VERSION_ABCD
+#define DLL_INJECT_SAMPLE_VERSION_STR                 "$VERSION_VERSION"
+#define DLL_INJECT_SAMPLE_VERSION_STR_BUILD           "$VERSION_BUILD"
+#define DLL_INJECT_SAMPLE_VERSION_STR_DATETIME        "$VERSION_DATETIME"
 
 #ifndef XYO_RC
 
-namespace DllInjectSample {
-	namespace Version {
+namespace DllInjectSample
+{
+	namespace Version
+	{
 		const char *version();
 		const char *build();
 		const char *versionWithBuild();

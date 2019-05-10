@@ -5,11 +5,11 @@ rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
 rem --- make
 
-echo ^> make dll-inject-sample ^<
+echo ^> %ACTION% dll-inject-sample ^<
 
 goto Make
 :ErrorMake
-echo Error: make
+echo Error: %ACTION%
 goto :eof
 :Make
 
