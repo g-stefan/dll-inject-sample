@@ -11,10 +11,8 @@
 #define DLL_INJECT_SAMPLE_LICENSE_HPP
 
 
-namespace DllInjectSample
-{
-	namespace License
-	{
+namespace DllInjectSample {
+	namespace License {
 		const char *content();
 		const char *shortContent();
 	};

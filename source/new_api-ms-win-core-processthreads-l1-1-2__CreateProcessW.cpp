@@ -1,5 +1,4 @@
-static BOOL WINAPI _new_api_ms_win_core_processthreads_l1_1_2__CreateProcessW(LPCTSTR lpApplicationName, LPTSTR lpCommandLine, LPSECURITY_ATTRIBUTES lpProcessAttributes, LPSECURITY_ATTRIBUTES lpThreadAttributes, BOOL bInheritHandles, DWORD dwCreationFlags, LPVOID lpEnvironment, LPCTSTR lpCurrentDirectory, LPSTARTUPINFO lpStartupInfo, LPPROCESS_INFORMATION lpProcessInformation)
-{
+static BOOL WINAPI _new_api_ms_win_core_processthreads_l1_1_2__CreateProcessW(LPCTSTR lpApplicationName, LPTSTR lpCommandLine, LPSECURITY_ATTRIBUTES lpProcessAttributes, LPSECURITY_ATTRIBUTES lpThreadAttributes, BOOL bInheritHandles, DWORD dwCreationFlags, LPVOID lpEnvironment, LPCTSTR lpCurrentDirectory, LPSTARTUPINFO lpStartupInfo, LPPROCESS_INFORMATION lpProcessInformation) {
 
 	//OutputDebugStringA("core.CreateProcessW");
 
@@ -23,10 +22,8 @@ static BOOL WINAPI _new_api_ms_win_core_processthreads_l1_1_2__CreateProcessW(LP
 			thisModuleFileName
 		);
 
-	if(retV == TRUE)
-	{
-		if(!isSuspended)
-		{
+	if(retV == TRUE) {
+		if(!isSuspended) {
 			ResumeThread(lpProcessInformation->hThread);
 		};
 	};

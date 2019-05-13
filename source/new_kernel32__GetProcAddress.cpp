@@ -1,5 +1,4 @@
-static FARPROC WINAPI _new_kernel32__GetProcAddress(HMODULE hModule, LPCSTR lpProcName)
-{
+static FARPROC WINAPI _new_kernel32__GetProcAddress(HMODULE hModule, LPCSTR lpProcName) {
 
 	//OutputDebugStringZA("kernel32.GetProcAddress:",hModule,lpProcName);
 

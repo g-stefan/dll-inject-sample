@@ -17,10 +17,8 @@
 
 #ifndef XYO_RC
 
-namespace DllInjectSample
-{
-	namespace Version
-	{
+namespace DllInjectSample {
+	namespace Version {
 		const char *version();
 		const char *build();
 		const char *versionWithBuild();

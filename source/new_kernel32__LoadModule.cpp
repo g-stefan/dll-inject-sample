@@ -1,13 +1,11 @@
-typedef struct tagLOADPARMS32
-{
+typedef struct tagLOADPARMS32 {
 	LPSTR lpEnvAddress;  // address of environment strings
 	LPSTR lpCmdLine;     // address of command line
 	LPSTR lpCmdShow;     // how to show new program
 	DWORD dwReserved;    // must be zero
 } LOADPARMS32;
 
-static DWORD WINAPI _new_kernel32__LoadModule(LPCSTR lpModuleName, LPVOID lpParameterBlock)
-{
+static DWORD WINAPI _new_kernel32__LoadModule(LPCSTR lpModuleName, LPVOID lpParameterBlock) {
 	DWORD retV;
 	STARTUPINFO         sInfo;
 	PROCESS_INFORMATION pInfo;
@@ -32,15 +30,12 @@ static DWORD WINAPI _new_kernel32__LoadModule(LPCSTR lpModuleName, LPVOID lpPara
 			thisModuleFileName
 		);
 
-	if(isOk)
-	{
+	if(isOk) {
 		ResumeThread(pInfo.hThread);
 		CloseHandle(pInfo.hThread);
 		CloseHandle(pInfo.hProcess);
 		retV = pInfo.dwProcessId;
-	}
-	else
-	{
+	} else {
 		retV = 0;
 	};
 

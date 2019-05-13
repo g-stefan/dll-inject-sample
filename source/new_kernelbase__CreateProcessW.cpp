@@ -1,5 +1,4 @@
-static BOOL WINAPI _new_kernelbase__CreateProcessW(LPCTSTR lpApplicationName, LPTSTR lpCommandLine, LPSECURITY_ATTRIBUTES lpProcessAttributes, LPSECURITY_ATTRIBUTES lpThreadAttributes, BOOL bInheritHandles, DWORD dwCreationFlags, LPVOID lpEnvironment, LPCTSTR lpCurrentDirectory, LPSTARTUPINFO lpStartupInfo, LPPROCESS_INFORMATION lpProcessInformation)
-{
+static BOOL WINAPI _new_kernelbase__CreateProcessW(LPCTSTR lpApplicationName, LPTSTR lpCommandLine, LPSECURITY_ATTRIBUTES lpProcessAttributes, LPSECURITY_ATTRIBUTES lpThreadAttributes, BOOL bInheritHandles, DWORD dwCreationFlags, LPVOID lpEnvironment, LPCTSTR lpCurrentDirectory, LPSTARTUPINFO lpStartupInfo, LPPROCESS_INFORMATION lpProcessInformation) {
 
 	//return=(*_original_kernelbase__CreateProcessW)(lpApplicationName,lpCommandLine,lpProcessAttributes,lpThreadAttributes,bInheritHandles,dwCreationFlags,lpEnvironment,lpCurrentDirectory,lpStartupInfo,lpProcessInformation);
 
@@ -21,10 +20,8 @@ static BOOL WINAPI _new_kernelbase__CreateProcessW(LPCTSTR lpApplicationName, LP
 			thisModuleFileName
 		);
 
-	if(retV == TRUE)
-	{
-		if(!isSuspended)
-		{
+	if(retV == TRUE) {
+		if(!isSuspended) {
 			ResumeThread(lpProcessInformation->hThread);
 		};
 	};

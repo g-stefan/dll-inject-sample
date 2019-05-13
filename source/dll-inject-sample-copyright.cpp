@@ -9,10 +9,8 @@
 
 #include "dll-inject-sample-copyright.hpp"
 
-namespace DllInjectSample
-{
-	namespace Copyright
-	{
+namespace DllInjectSample {
+	namespace Copyright {
 
 		static const char *copyright_ = "Copyright (c) Grigore Stefan";
 		static const char *publisher_ = "Grigore Stefan";
@@ -20,28 +18,23 @@ namespace DllInjectSample
 		static const char *contact_ = "g_stefan@yahoo.com";
 		static const char *fullCopyright_ = "Copyright (c) Grigore Stefan <g_stefan@yahoo.com>";
 
-		const char *copyright()
-		{
+		const char *copyright() {
 			return copyright_;
 		};
 
-		const char *publisher()
-		{
+		const char *publisher() {
 			return publisher_;
 		};
 
-		const char *company()
-		{
+		const char *company() {
 			return company_;
 		};
 
-		const char *contact()
-		{
+		const char *contact() {
 			return contact_;
 		};
 
-		const char *fullCopyright()
-		{
+		const char *fullCopyright() {
 			return fullCopyright_;
 		};
 
