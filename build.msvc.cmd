@@ -75,6 +75,15 @@ set PATH=%CD%;%PATH%
 popd
 :BuildStep2
 
+goto BuildStep3
+:Test
+if exist build.msvc.test.cmd call build.msvc.test.cmd
+goto BuildStep4
+:BuildStep3
+
+if "%ACTION%"=="test" goto Test
+
 call build.msvc.make.cmd
 
+:BuildStep4
 set PATH=%RESTORE_PATH%
