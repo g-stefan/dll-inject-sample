@@ -5,7 +5,7 @@ rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
 rem --- make
 
-echo ^> %ACTION% dll-inject-sample ^<
+echo -^> %ACTION% dll-inject-sample
 
 goto Make
 :ErrorMake
