@@ -3,21 +3,18 @@ rem Public domain
 rem http://unlicense.org/
 rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
-rem --- core
-
-if not "%1" == "clean" goto SelectPlatform
-call build.msvc.clean.cmd
-goto :eof
-
-:SelectPlatform
 set ACTION=%1
+set MSVC_PLATFORM_MACHINE=win64
+if "%1" == "" set ACTION=make
 if "%1" == "win64" set ACTION=%2
+if "%1" == "win64" set MSVC_PLATFORM_MACHINE=win64
 if "%1" == "win32" set ACTION=%2
+if "%1" == "win32" set MSVC_PLATFORM_MACHINE=win32
+if "%ACTION%" == "" set ACTION=make
 if "%XYO_PLATFORM%" == "win64-msvc-2017" goto Build
 if "%XYO_PLATFORM%" == "win32-msvc-2017" goto Build
 if "%XYO_PLATFORM%" == "win64-msvc-2019" goto Build
 if "%XYO_PLATFORM%" == "win32-msvc-2019" goto Build
-set ACTION=%2
 set MSVC_PLATFORM_VERSION=2019
 set MSVC_PLATFORM_PATH=C:\Program Files (x86)\Microsoft Visual Studio\%MSVC_PLATFORM_VERSION%\Community\VC\Auxiliary\Build\
 if exist "%MSVC_PLATFORM_PATH%\vcvarsall.bat" goto SelectPlatformMachine
@@ -28,8 +25,8 @@ echo Error: not found - Microsoft Visual Studio Community
 goto :eof
 
 :SelectPlatformMachine
-if "%1" == "win64" goto Win64
-if "%1" == "win32" goto Win32
+if "%MSVC_PLATFORM_MACHINE%" == "win64" goto Win64
+if "%MSVC_PLATFORM_MACHINE%" == "win32" goto Win32
 echo Error: uknown platform please provide win32 or win64
 goto :eof
 
@@ -75,15 +72,20 @@ set PATH=%CD%;%PATH%
 popd
 :BuildStep2
 
-goto BuildStep3
-:Test
-if exist build.msvc.test.cmd call build.msvc.test.cmd
-goto BuildStep4
+if not exist build.msvc.%ACTION%.cmd goto BuildStep3
+call build.msvc.%ACTION%.cmd
+if errorlevel 1 goto BuildStepError
+goto BuildStepDone
+
 :BuildStep3
+call build.msvc.make.cmd %ACTION%
+if errorlevel 1 goto BuildStepError
+goto BuildStepDone
 
-if "%ACTION%"=="test" goto Test
-
-call build.msvc.make.cmd
-
-:BuildStep4
+goto BuildStepDone
+:BuildStepError
 set PATH=%RESTORE_PATH%
+exit 1
+:BuildStepDone
+set PATH=%RESTORE_PATH%
+

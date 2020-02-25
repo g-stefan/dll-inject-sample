@@ -48,7 +48,6 @@
 *.o2so
 *.o2elf
 *.config.md5
-/.vscode/ipch/
 /bin/
 /build/
 /lib/

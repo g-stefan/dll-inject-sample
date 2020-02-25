@@ -55,8 +55,7 @@ static void OutputDebugStringZA(const char *text1, HMODULE hmodule, const char *
 	OutputDebugStringA(buf);
 };
 
-#include "libxyo-core.hpp"
-#include "libxyo-win-inject.hpp"
+#include "xyo-win-inject.hpp"
 
 #include "dll-inject-sample-copyright.hpp"
 #include "dll-inject-sample-license.hpp"
@@ -216,11 +215,11 @@ FARPROC WINAPI hook_GetProcAddress(FARPROC originalPorc, HMODULE hModule, LPCSTR
 		if(retV == (FARPROC)(*scanList)->originalProc) {
 			OutputDebugStringA("---original---");
 			OutputDebugStringA((*scanList)->procName);
-			if(XYO::Core::StringCore::compareIgnoreCaseAscii((*scanList)->procName, "LoadLibraryW") == 0) {
+			if(XYO::StringCore::compareIgnoreCaseAscii((*scanList)->procName, "LoadLibraryW") == 0) {
 				OutputDebugStringA("---replaced---");
 				return (*scanList)->newProc;
 			};
-			if(XYO::Core::StringCore::compareIgnoreCaseAscii((*scanList)->procName, "LoadLibraryExW") == 0) {
+			if(XYO::StringCore::compareIgnoreCaseAscii((*scanList)->procName, "LoadLibraryExW") == 0) {
 				OutputDebugStringA("---replaced---");
 				return (*scanList)->newProc;
 			};

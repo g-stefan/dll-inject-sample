@@ -3,17 +3,19 @@ rem Public domain
 rem http://unlicense.org/
 rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
-rem --- make
+set ACTION=%1
+if "%1" == "" set ACTION=make
 
 echo -^> %ACTION% dll-inject-sample
 
-goto Make
-:ErrorMake
-echo Error: %ACTION%
+goto StepX
+:cmdX
+%*
+if errorlevel 1 goto cmdXError
 goto :eof
-:Make
+:cmdXError
+echo "Error: %ACTION%"
+exit 1
+:StepX
 
-xyo-cc --mode=%ACTION% --dll-x-static dll-inject-sample --source-is-separate --no-def-dynamic-link --no-lib --dll-no-version --inc=. --use-project=libxyo-win-inject.static
-IF ERRORLEVEL 1 goto ErrorMake
-
-
+call :cmdX xyo-cc --mode=%ACTION% @source/dll-inject-sample.compile.info

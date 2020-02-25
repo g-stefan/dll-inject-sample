@@ -14,6 +14,8 @@ namespace DllInjectSample {
 
 		static const char *license_ =
 			"\r\n"
+			"Dll Inject Sample\r\n"
+			"\r\n"
 			"MIT License (MIT)\r\n"
 			"\r\n"
 			"Copyright (c) 2020 Grigore Stefan <g_stefan@yahoo.com>\r\n"
