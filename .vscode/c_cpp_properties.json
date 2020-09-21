@@ -1,0 +1,70 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "Win32",
+            "intelliSenseMode": "msvc-x64",
+            "includePath": [
+                "${workspaceRoot}/include",
+                "${workspaceRoot}/source",
+                "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.26.28801/ATLMFC/include",
+                "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.26.28801/include",
+                "C:/Program Files (x86)/Windows Kits/NETFXSDK/4.8/include/um",
+                "C:/Program Files (x86)/Windows Kits/10/include/10.0.18362.0/ucrt",
+                "C:/Program Files (x86)/Windows Kits/10/include/10.0.18362.0/shared",
+                "C:/Program Files (x86)/Windows Kits/10/include/10.0.18362.0/um",
+                "C:/Program Files (x86)/Windows Kits/10/include/10.0.18362.0/winrt"
+            ],
+            "defines": [
+                "XYO_OS_WINDOWS",
+                "XYO_COMPILER_MSVC",
+                "XYO_APPLICATION_64BIT",
+                "XYO_MULTI_THREAD",
+                "XYO_PLATFORM=\"win64-msvc-2019\""
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceRoot}/include",
+                    "${workspaceRoot}/source",
+                    "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.26.28801/ATLMFC/include",
+                    "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.26.28801/include",
+                    "C:/Program Files (x86)/Windows Kits/NETFXSDK/4.8/include/um",
+                    "C:/Program Files (x86)/Windows Kits/10/include/10.0.18362.0/ucrt",
+                    "C:/Program Files (x86)/Windows Kits/10/include/10.0.18362.0/shared",
+                    "C:/Program Files (x86)/Windows Kits/10/include/10.0.18362.0/um",
+                    "C:/Program Files (x86)/Windows Kits/10/include/10.0.18362.0/winrt"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.26.28801/bin/Hostx64/x64/cl.exe"
+        },
+        {
+            "name": "linux",
+            "intelliSenseMode": "gcc-x64",
+            "includePath": [
+                "${workspaceRoot}/include",
+                "${workspaceRoot}/source"
+            ],
+            "defines": [
+                "XYO_OS_UNIX",
+                "XYO_COMPILER_GCC",
+                "XYO_APPLICATION_64BIT",
+                "XYO_MULTI_THREAD",
+                "XYO_PLATFORM=\"ubuntu-focal\""
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceRoot}/include",
+                    "${workspaceRoot}/source"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ]
+}
