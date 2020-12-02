@@ -25,8 +25,8 @@ git push --tags
 echo Create release %PROJECT% v%VERSION%
 github-release release --repo %PROJECT% --tag v%VERSION% --name "v%VERSION%" --description "Release"
 pushd release
-for /r %%i in (*.7z) do echo Upload %%~nxi & github-release upload --repo %PROJECT% --tag v%VERSION% --name "%%~nxi" --file "%%i"
-for /r %%i in (*.csv) do echo Upload %%~nxi & github-release upload --repo %PROJECT% --tag v%VERSION% --name "%%~nxi" --file "%%i"
+for /r %%i in (%PROJECT%-%VERSION%*.7z) do echo Upload %%~nxi & github-release upload --repo %PROJECT% --tag v%VERSION% --name "%%~nxi" --file "%%i"
+for /r %%i in (%PROJECT%-%VERSION%*.csv) do echo Upload %%~nxi & github-release upload --repo %PROJECT% --tag v%VERSION% --name "%%~nxi" --file "%%i"
 popd
 
 goto :eof
