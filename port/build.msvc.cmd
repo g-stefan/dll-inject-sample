@@ -48,6 +48,8 @@ goto Build
 
 :Build
 set RESTORE_PATH=%PATH%
+set RESTORE_INCLUDE=%INCLUDE%
+set RESTORE_LIB=%LIB%
 if not "%XYO_PATH_REPOSITORY%" == "" goto BuildSetPath
 set PATH_REPOSITORY=.\repository
 set PATH_RELEASE=.\release
@@ -61,6 +63,8 @@ set XYO_PATH_RELEASE=%CD%
 popd
 :BuildSetPath
 set PATH=%XYO_PATH_REPOSITORY%\bin;%PATH%
+set INCLUDE=%XYO_PATH_REPOSITORY%\include;%INCLUDE%
+set LIB=%XYO_PATH_REPOSITORY%\lib;%LIB%
 if not exist bin\ goto BuildBegin
 pushd bin
 set PATH=%CD%;%PATH%
@@ -80,7 +84,11 @@ goto BuildStepDone
 goto BuildStepDone
 :BuildStepError
 set PATH=%RESTORE_PATH%
+set INCLUDE=%RESTORE_INCLUDE%
+set LIB=%RESTORE_LIB%
 exit 1
 :BuildStepDone
 set PATH=%RESTORE_PATH%
+set INCLUDE=%RESTORE_INCLUDE%
+set LIB=%RESTORE_LIB%
 
