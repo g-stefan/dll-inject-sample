@@ -5,7 +5,7 @@ rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
 SETLOCAL ENABLEDELAYEDEXPANSION
 
-echo -^> git-release-check dll-inject-sample
+echo -^> github-release-check dll-inject-sample
 
 set PROJECT=dll-inject-sample
 if not exist source\%PROJECT%.version.ini echo Error - no version & exit 1

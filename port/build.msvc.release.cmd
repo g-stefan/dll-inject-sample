@@ -3,7 +3,7 @@ rem Public domain
 rem http://unlicense.org/
 rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
-echo -^> local-release dll-inject-sample
+echo -^> release dll-inject-sample
 
 goto cmdXDefined
 :cmdX
@@ -11,7 +11,7 @@ goto cmdXDefined
 if errorlevel 1 goto cmdXError
 goto :eof
 :cmdXError
-echo "Error: local-release"
+echo "Error: release"
 exit 1
 :cmdXDefined
 
