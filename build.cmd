@@ -13,7 +13,7 @@ if "%XYO_PLATFORM%" == "win64-msvc-2019" set DEFAULT_PLATFORM=msvc
 if "%XYO_PLATFORM%" == "win32-msvc-2019" set DEFAULT_PLATFORM=msvc
 if "%XYO_PLATFORM%" == "win64-msvc-2017" set DEFAULT_PLATFORM=msvc
 if "%XYO_PLATFORM%" == "win32-msvc-2017" set DEFAULT_PLATFORM=msvc
-if "%XYO_PLATFORM%" == "" goto Info
+if "%DEFAULT_PLATFORM%" == "" set DEFAULT_PLATFORM=msvc
 if not exist ".\port\build.%DEFAULT_PLATFORM%.cmd" goto Info
 call ".\port\build.%DEFAULT_PLATFORM%.cmd" %1
 goto :eof
