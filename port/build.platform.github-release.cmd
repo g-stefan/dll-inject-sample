@@ -17,7 +17,7 @@ FOR /F "tokens=* USEBACKQ" %%F IN (`xyo-version --no-bump --get "--version-file=
 
 echo -^> release %PROJECT% v%VERSION%
 
-git pull --tags origin master
+git pull --tags origin main
 git rev-parse --quiet "v%VERSION%" 1>NUL 2>NUL
 if not errorlevel 1 goto tagExists
 git tag -a v%VERSION% -m "v%VERSION%"
