@@ -18,4 +18,4 @@ echo "Error: %ACTION%"
 exit 1
 :StepX
 
-call :cmdX xyo-cc --mode=%ACTION% @source/dll-inject-sample.compile
+call :cmdX xyo-cc --mode=%ACTION% @build/source/dll-inject-sample.compile

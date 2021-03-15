@@ -2,5 +2,5 @@
 --no-def-dynamic-link
 --no-lib
 --dll-no-version
---use-path=source
 --use-project=xyo-win-inject.static
+--output-bin-path-is-output

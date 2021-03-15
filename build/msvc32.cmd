@@ -11,4 +11,4 @@ if "%XYO_PLATFORM%" == "win32-msvc-2019" goto Build
 if "%XYO_PLATFORM%" == "win32-msvc-2017" goto Build
 set XYO_PLATFORM=
 :Build
-cmd.exe /C "port\build.msvc.cmd win32 %1"
+cmd.exe /C "build\msvc.cmd win32 %1"
