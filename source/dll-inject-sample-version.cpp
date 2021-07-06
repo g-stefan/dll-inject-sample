@@ -12,10 +12,10 @@
 namespace DllInjectSample {
 	namespace Version {
 
-		static const char *version_ = "1.3.0";
-		static const char *build_ = "6";
-		static const char *versionWithBuild_ = "1.3.0.6";
-		static const char *datetime_ = "2021-03-15 12:30:24";
+		static const char *version_ = "1.4.0";
+		static const char *build_ = "7";
+		static const char *versionWithBuild_ = "1.4.0.7";
+		static const char *datetime_ = "2021-07-06 15:11:51";
 
 		const char *version() {
 			return version_;
