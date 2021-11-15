@@ -17,6 +17,8 @@ exit 1
 
 set XYO_PATH_RELEASE=release
 
+xyo-cc dll-inject-sample --has-archived-release --version-file=version.ini
+if errorlevel 1 exit 0
 call :cmdX call build\msvc.cmd make
 call :cmdX call build\msvc.cmd sign
 call :cmdX call build\msvc.cmd install

@@ -7,6 +7,7 @@ set XYO_PATH_REPOSITORY=%HOMEDRIVE%%HOMEPATH%\SDK32
 set XYO_PATH_RELEASE=%HOMEDRIVE%%HOMEPATH%\SDK32\release
 set XYO_PATH_REPOSITORY_LIBRARY=
 
+if "%XYO_PLATFORM%" == "win32-msvc-2022" goto Build
 if "%XYO_PLATFORM%" == "win32-msvc-2019" goto Build
 if "%XYO_PLATFORM%" == "win32-msvc-2017" goto Build
 set XYO_PLATFORM=

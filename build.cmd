@@ -9,6 +9,8 @@ call ".\build\%1.cmd" %2
 goto :eof
 :SelectDefaultPlatform
 set DEFAULT_PLATFORM=
+if "%XYO_PLATFORM%" == "win64-msvc-2022" set DEFAULT_PLATFORM=msvc
+if "%XYO_PLATFORM%" == "win32-msvc-2022" set DEFAULT_PLATFORM=msvc
 if "%XYO_PLATFORM%" == "win64-msvc-2019" set DEFAULT_PLATFORM=msvc
 if "%XYO_PLATFORM%" == "win32-msvc-2019" set DEFAULT_PLATFORM=msvc
 if "%XYO_PLATFORM%" == "win64-msvc-2017" set DEFAULT_PLATFORM=msvc

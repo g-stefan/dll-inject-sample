@@ -13,10 +13,15 @@ if "%1" == "win64" set MSVC_PLATFORM_MACHINE=win64
 if "%1" == "win32" set ACTION=%2
 if "%1" == "win32" set MSVC_PLATFORM_MACHINE=win32
 if "%ACTION%" == "" set ACTION=make
+if "%XYO_PLATFORM%" == "win64-msvc-2022" goto Build
+if "%XYO_PLATFORM%" == "win32-msvc-2022" goto Build
 if "%XYO_PLATFORM%" == "win64-msvc-2019" goto Build
 if "%XYO_PLATFORM%" == "win32-msvc-2019" goto Build
 if "%XYO_PLATFORM%" == "win64-msvc-2017" goto Build
 if "%XYO_PLATFORM%" == "win32-msvc-2017" goto Build
+set MSVC_PLATFORM_VERSION=2022
+set MSVC_PLATFORM_PATH=C:\Program Files\Microsoft Visual Studio\%MSVC_PLATFORM_VERSION%\Community\VC\Auxiliary\Build\
+if exist "%MSVC_PLATFORM_PATH%\vcvarsall.bat" goto SelectPlatformMachine
 set MSVC_PLATFORM_VERSION=2019
 set MSVC_PLATFORM_PATH=C:\Program Files (x86)\Microsoft Visual Studio\%MSVC_PLATFORM_VERSION%\Community\VC\Auxiliary\Build\
 if exist "%MSVC_PLATFORM_PATH%\vcvarsall.bat" goto SelectPlatformMachine
