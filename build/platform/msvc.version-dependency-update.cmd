@@ -3,8 +3,6 @@ rem Public domain
 rem http://unlicense.org/
 rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
-echo -^> clean dll-inject-sample
+echo - %BUILD_PROJECT% ^> version-dependency-update
 
-if exist output\ rmdir /Q /S output
-if exist temp\ rmdir /Q /S temp
-
+xyo-cc --update-version-dependency %BUILD_PROJECT%

@@ -5,7 +5,7 @@ rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
 SETLOCAL ENABLEDELAYEDEXPANSION
 
-echo -^> github-update dll-inject-sample
+echo - %BUILD_PROJECT% ^> platform github-update
 
 git fetch --prune --prune-tags
 git add --all
