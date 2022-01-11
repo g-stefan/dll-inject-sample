@@ -18,6 +18,7 @@ exit 1
 set XYO_PATH_RELEASE_ORIGINAL=%XYO_PATH_RELEASE%
 set XYO_PATH_RELEASE=release
 
+xyo-cc %BUILD_PROJECT% --install-archived-release --version-file=version.ini
 xyo-cc %BUILD_PROJECT% --has-archived-release --version-file=version.ini
 if errorlevel 1 exit 0
 call :cmdX call build\platform\msvc.cmd make
