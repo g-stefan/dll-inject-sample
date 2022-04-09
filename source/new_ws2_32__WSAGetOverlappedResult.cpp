@@ -1,23 +1,23 @@
 static BOOL WSAAPI _new_ws2_32__WSAGetOverlappedResult(SOCKET s, LPWSAOVERLAPPED lpOverlapped, LPDWORD lpcbTransfer, BOOL fWait, LPDWORD lpdwFlags) {
 	BOOL retV;
 
-//	OutputDebugStringA("ws2_32.WSAGetOverlappedResult");
+	//	OutputDebugStringA("ws2_32.WSAGetOverlappedResult");
 
 	retV = _original_ws2_32__WSAGetOverlappedResult(s, lpOverlapped, lpcbTransfer, fWait, lpdwFlags);
 	DWORD errCode = GetLastError();
 
-	if(retV == TRUE) {
+	if (retV == TRUE) {
 
 		HookProcess *hookProcess = getHookProcess();
 
-		if(hookProcess->WSARecv_lpOverlapped == lpOverlapped) {
+		if (hookProcess->WSARecv_lpOverlapped == lpOverlapped) {
 			DWORD bytesTransfer = *lpcbTransfer;
-			if(bytesTransfer > 0) {
+			if (bytesTransfer > 0) {
 				DWORD index;
 				LPWSABUF lpBuffersIndex = hookProcess->WSARecv_lpBuffers;
-				for(index = 0; index < hookProcess->WSARecv_dwBufferCount; ++index, ++lpBuffersIndex) {
-					if(lpBuffersIndex->len > 0) {
-						if(bytesTransfer <= lpBuffersIndex->len) {
+				for (index = 0; index < hookProcess->WSARecv_dwBufferCount; ++index, ++lpBuffersIndex) {
+					if (lpBuffersIndex->len > 0) {
+						if (bytesTransfer <= lpBuffersIndex->len) {
 							recvHookProcess(hookProcess, lpBuffersIndex->buf, bytesTransfer);
 							break;
 						};
@@ -30,14 +30,14 @@ static BOOL WSAAPI _new_ws2_32__WSAGetOverlappedResult(SOCKET s, LPWSAOVERLAPPED
 			return retV;
 		};
 
-		if(hookProcess->WSASend_lpOverlapped == lpOverlapped) {
+		if (hookProcess->WSASend_lpOverlapped == lpOverlapped) {
 			DWORD bytesTransfer = *lpcbTransfer;
-			if(bytesTransfer > 0) {
+			if (bytesTransfer > 0) {
 				DWORD index;
 				LPWSABUF lpBuffersIndex = hookProcess->WSASend_lpBuffers;
-				for(index = 0; index < hookProcess->WSASend_dwBufferCount; ++index, ++lpBuffersIndex) {
-					if(lpBuffersIndex->len > 0) {
-						if(bytesTransfer <= lpBuffersIndex->len) {
+				for (index = 0; index < hookProcess->WSASend_dwBufferCount; ++index, ++lpBuffersIndex) {
+					if (lpBuffersIndex->len > 0) {
+						if (bytesTransfer <= lpBuffersIndex->len) {
 							sendHookProcess(hookProcess, lpBuffersIndex->buf, bytesTransfer);
 							break;
 						};
@@ -49,7 +49,6 @@ static BOOL WSAAPI _new_ws2_32__WSAGetOverlappedResult(SOCKET s, LPWSAOVERLAPPED
 			SetLastError(errCode);
 			return retV;
 		};
-
 	};
 
 	SetLastError(errCode);

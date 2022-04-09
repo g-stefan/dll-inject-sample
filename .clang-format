@@ -1,0 +1,14 @@
+BasedOnStyle: LLVM
+Language: Cpp
+UseTab: ForIndentation
+IndentWidth: 8
+BreakBeforeBraces: Attach
+NamespaceIndentation: All
+AccessModifierOffset: 0
+IndentAccessModifiers: true
+FixNamespaceComments: false
+ColumnLimit: 0
+IndentPPDirectives: AfterHash
+SortIncludes: false
+UseCRLF: true
+AllowShortBlocksOnASingleLine: Never
