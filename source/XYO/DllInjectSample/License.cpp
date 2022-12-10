@@ -8,31 +8,12 @@
 
 namespace XYO::DllInjectSample::License {
 
-	static const char *licenseHeader_ =
-	    "\r\n"
-	    "XYO\r\n"
-	    "\r\n"
-	    "MIT License (MIT)\r\n"
-	    "\r\n"
-	    "Copyright (c) 2022 Grigore Stefan <g_stefan@yahoo.com>\r\n"
-	    "\r\n";
-
-	static const char *shortLicense_ =
-	    "\r\n"
-	    "Copyright (c) 2022 Grigore Stefan <g_stefan@yahoo.com>\r\n"
-	    "MIT License (MIT) <http://opensource.org/licenses/MIT>\r\n"
-	    "\r\n";
-
-	const char *licenseHeader() {
-		return licenseHeader_;
-	};
-
-	const char *licenseBody() {
-		return XYO::ManagedMemory::License::licenseBody();
+	const char *license() {
+		return XYO::ManagedMemory::License::license();
 	};
 
 	const char *shortLicense() {
-		return shortLicense_;
+		return XYO::ManagedMemory::License::shortLicense();
 	};
 
 };

@@ -13,7 +13,6 @@ namespace XYO::DllInjectSample::Copyright {
 	static const char *publisher_ = XYO_DLLINJECTSAMPLE_PUBLISHER;
 	static const char *company_ = XYO_DLLINJECTSAMPLE_COMPANY;
 	static const char *contact_ = XYO_DLLINJECTSAMPLE_CONTACT;
-	static const char *fullCopyright_ = XYO_DLLINJECTSAMPLE_FULL_COPYRIGHT;
 
 	const char *copyright() {
 		return copyright_;
@@ -29,10 +28,6 @@ namespace XYO::DllInjectSample::Copyright {
 
 	const char *contact() {
 		return contact_;
-	};
-
-	const char *fullCopyright() {
-		return fullCopyright_;
 	};
 
 };

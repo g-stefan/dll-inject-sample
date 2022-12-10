@@ -16,7 +16,6 @@ namespace XYO::DllInjectSample::Copyright {
 	XYO_DLLINJECTSAMPLE_EXPORT const char *publisher();
 	XYO_DLLINJECTSAMPLE_EXPORT const char *company();
 	XYO_DLLINJECTSAMPLE_EXPORT const char *contact();
-	XYO_DLLINJECTSAMPLE_EXPORT const char *fullCopyright();
 };
 
 #endif
