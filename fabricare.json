@@ -1,0 +1,17 @@
+{
+	"project": {
+		"name":"dll-inject-sample",
+		"type":"xyo-cpp",
+		"make" : "dll.static",
+		"SPDX-License-Identifier": "MIT",
+		"includePath" : [
+			"source/XYO/DllInjectSample/Code"
+		],
+		"sourcePath" : [
+			"XYO/DllInjectSample"
+		],
+		"dependency" : [
+			"xyo-win-inject"
+		]
+	}
+}

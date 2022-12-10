@@ -7,11 +7,11 @@
 			"label": "Build",
 			"type": "shell",
 			"windows": {
-				"command": "cmd.exe /c build.cmd",
+				"command": "fabricare make",
 			},
 			"linux": {
-				"command": "/bin/sh -- build.sh",
-			}
+				"command": "fabricare make",
+			},
 			"problemMatcher": [
 				"$msCompile", "$gcc"
 			],
@@ -21,14 +21,27 @@
 			}
 		},
 		{
+			"label": "Test",
+			"type": "shell",
+			"windows": {
+				"command": "fabricare test",
+			},
+			"linux": {
+				"command": "fabricare test",
+			},
+			"problemMatcher": [
+				"$msCompile", "$gcc"
+			]
+		},
+		{
 			"label": "Analyze",
 			"type": "shell",
 			"windows": {
-				"command": "cmd.exe /c build.cmd analyze",
+				"command": "fabricare analyze",
 			},
 			"linux": {
-				"command": "/bin/sh -- build.sh analyze",
-			}
+				"command": "fabricare analyze",
+			},
 			"problemMatcher": [
 				"$msCompile", "$gcc"
 			]
@@ -37,11 +50,11 @@
 			"label": "Clean",
 			"type": "shell",
 			"windows": {
-				"command": "cmd.exe /c build.cmd clean",
+				"command": "fabricare clean",
 			},
 			"linux": {
-				"command": "/bin/sh -- build.sh clean",
-			}
+				"command": "fabricare clean",
+			},
 			"problemMatcher": [
 				"$msCompile", "$gcc"
 			]
@@ -50,11 +63,11 @@
 			"label": "Install",
 			"type": "shell",
 			"windows": {
-				"command": "cmd.exe /c build.cmd install",
+				"command": "fabricare install",
 			},
 			"linux": {
-				"command": "/bin/sh -- build.sh install",
-			}
+				"command": "fabricare install",
+			},
 			"problemMatcher": [
 				"$msCompile", "$gcc"
 			]
@@ -63,11 +76,37 @@
 			"label": "Version",
 			"type": "shell",
 			"windows": {
-				"command": "cmd.exe /c build.cmd version",
+				"command": "fabricare version",
 			},
 			"linux": {
-				"command": "/bin/sh -- build.sh version",
-			}
+				"command": "fabricare version",
+			},
+			"problemMatcher": [
+				"$msCompile", "$gcc"
+			]
+		},
+		{
+			"label": "Build documentation",
+			"type": "shell",
+			"windows": {
+				"command": "mkdocs build",
+			},
+			"linux": {
+				"command": "mkdocs build",
+			},
+			"problemMatcher": [
+				"$msCompile", "$gcc"
+			]
+		},
+		{
+			"label": "Check licenses",
+			"type": "shell",
+			"windows": {
+				"command": "ubuntu2204.exe -c 'reuse lint'",
+			},
+			"linux": {
+				"command": "reuse lint",
+			},
 			"problemMatcher": [
 				"$msCompile", "$gcc"
 			]

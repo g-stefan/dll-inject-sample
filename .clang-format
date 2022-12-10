@@ -12,3 +12,10 @@ IndentPPDirectives: AfterHash
 SortIncludes: false
 UseCRLF: true
 AllowShortBlocksOnASingleLine: Never
+---
+Language: JavaScript
+UseTab: ForIndentation
+IndentWidth: 8
+ColumnLimit: 0
+UseCRLF: true
+AllowShortBlocksOnASingleLine: Never

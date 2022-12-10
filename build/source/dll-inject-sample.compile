@@ -1,6 +1,0 @@
---dll-x-static dll-inject-sample
---no-def-dynamic-link
---no-lib
---dll-no-version
---use-project=xyo-win-inject.static
---output-bin-path-is-output

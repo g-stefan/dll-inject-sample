@@ -2,5 +2,8 @@
 	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
 	"editor.tabSize": 8,
-	"files.encoding": "utf8"
+	"files.encoding": "utf8",
+	"files.associations": {
+		"*.rh": "cpp"
+	}
 }
