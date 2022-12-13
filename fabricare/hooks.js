@@ -3,4 +3,6 @@
 // SPDX-FileCopyrightText: 2022 Grigore Stefan <g_stefan@yahoo.com>
 // SPDX-License-Identifier: Unlicense
 
-exitIf(Shell.system("cmd.exe /C \"fabricare\\make.hooks.cmd\""));
+messageAction("hooks");
+
+exitIf(Shell.system("cmd.exe /C \"fabricare\\hooks.cmd\""));
