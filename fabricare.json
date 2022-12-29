@@ -12,6 +12,8 @@
 		],
 		"dependency" : [
 			"xyo-win-inject"
-		]
+		],
+		"hasRelease" : true,
+		"githubRelease" : true
 	}
 }
