@@ -1,20 +1,24 @@
 {
-	"project": {
-		"name":"dll-inject-sample",
-		"type":"xyo-cpp",
-		"make" : "dll.static",
-		"SPDX-License-Identifier": "MIT",
-		"includePath" : [
-			"source/XYO/DllInjectSample/Code"
+	"solution": {
+		"name" : "dll-inject-sample",
+		"type" : "xyo-cpp",
+		"projects": [
+			{
+				"name" : "dll-inject-sample",
+				"make" : "dll.static",
+				"SPDX-License-Identifier": "MIT",
+				"includePath" : [
+					"source/XYO/DllInjectSample/Code"
+				],
+				"sourcePath" : [
+					"XYO/DllInjectSample"
+				],
+				"dependency" : [
+					"xyo-win-inject"
+				],
+			}
 		],
-		"sourcePath" : [
-			"XYO/DllInjectSample"
-		],
-		"dependency" : [
-			"xyo-win-inject"
-		],
-		"hasRelease" : true,
-		"githubRelease" : true,
+		"hasGithub" : true,
 		"releaseDev" : false
 	}
 }
