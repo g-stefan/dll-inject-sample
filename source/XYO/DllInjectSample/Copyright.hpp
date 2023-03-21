@@ -12,10 +12,10 @@
 #endif
 
 namespace XYO::DllInjectSample::Copyright {
-	XYO_DLLINJECTSAMPLE_EXPORT const char *copyright();
-	XYO_DLLINJECTSAMPLE_EXPORT const char *publisher();
-	XYO_DLLINJECTSAMPLE_EXPORT const char *company();
-	XYO_DLLINJECTSAMPLE_EXPORT const char *contact();
+	XYO_DLLINJECTSAMPLE_EXPORT std::string copyright();
+	XYO_DLLINJECTSAMPLE_EXPORT std::string publisher();
+	XYO_DLLINJECTSAMPLE_EXPORT std::string company();
+	XYO_DLLINJECTSAMPLE_EXPORT std::string contact();
 };
 
 #endif

@@ -13,8 +13,8 @@
 
 namespace XYO::DllInjectSample::License {
 
-	XYO_DLLINJECTSAMPLE_EXPORT const char *license();
-	XYO_DLLINJECTSAMPLE_EXPORT const char *shortLicense();
+	XYO_DLLINJECTSAMPLE_EXPORT std::string license();
+	XYO_DLLINJECTSAMPLE_EXPORT std::string shortLicense();
 
 };
 
