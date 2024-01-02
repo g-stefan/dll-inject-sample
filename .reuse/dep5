@@ -5,7 +5,7 @@ Source: https://github.com/g-stefan/dll-inject-sample
 License: MIT
 
 Files: .github/*
-Copyright: 2014-2023 Grigore Stefan <g_stefan@yahoo.com>
+Copyright: 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
 License: Unlicense
 
 Files: .github/CODE_OF_CONDUCT.md
@@ -13,49 +13,49 @@ Copyright: 2014 Coraline Ada Ehmke <https://where.coraline.codes/>
 License: CC-BY-4.0
 
 Files: .gitignore
-Copyright: 2014-2023 Grigore Stefan <g_stefan@yahoo.com>
+Copyright: 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
 License: Unlicense
 
 Files: .vscode/*
-Copyright: 2014-2023 Grigore Stefan <g_stefan@yahoo.com>
+Copyright: 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
 License: Unlicense
 
 Files: mkdocs.yml
-Copyright: 2014-2023 Grigore Stefan <g_stefan@yahoo.com>
+Copyright: 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
 License: Unlicense
 
 Files: build/*
-Copyright: 2014-2023 Grigore Stefan <g_stefan@yahoo.com>
+Copyright: 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
 License: Unlicense
 
 Files: build.cmd
-Copyright: 2014-2023 Grigore Stefan <g_stefan@yahoo.com>
+Copyright: 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
 License: Unlicense
 
 Files: build.sh
-Copyright: 2014-2023 Grigore Stefan <g_stefan@yahoo.com>
+Copyright: 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
 License: Unlicense
 
 Files: README.md
-Copyright: 2014-2023 Grigore Stefan <g_stefan@yahoo.com>
+Copyright: 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
 License: MIT
 
 Files: output/*
-Copyright: 2014-2023 Grigore Stefan <g_stefan@yahoo.com>
+Copyright: 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
 License: MIT
 
 Files: source/*
-Copyright: 2014-2023 Grigore Stefan <g_stefan@yahoo.com>
+Copyright: 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
 License: MIT
 
 Files: test/*
-Copyright: 2014-2023 Grigore Stefan <g_stefan@yahoo.com>
+Copyright: 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
 License: Unlicense
 
 Files: temp/*
-Copyright: 2014-2023 Grigore Stefan <g_stefan@yahoo.com>
+Copyright: 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
 License: MIT
 
 Files: version.ini
-Copyright: 2014-2023 Grigore Stefan <g_stefan@yahoo.com>
+Copyright: 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
 License: Unlicense
