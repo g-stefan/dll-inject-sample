@@ -11,10 +11,10 @@ namespace XYO::DllInjectSample::License {
 
 	std::string license() {
 		std::string retV;
-		retV += ManagedMemory::License::licenseMITHeader();
+		retV += Platform::License::licenseMITHeader();
 		retV += Copyright::copyright();
 		retV += "\r\n";
-		retV += ManagedMemory::License::licenseMITContent();
+		retV += Platform::License::licenseMITContent();
 		return retV;
 	};
 
@@ -22,7 +22,7 @@ namespace XYO::DllInjectSample::License {
 		std::string retV;
 		retV += Copyright::copyright();
 		retV += "\r\n";
-		retV += ManagedMemory::License::licenseMITShort();
+		retV += Platform::License::licenseMITShort();
 		return retV;
 	};
 

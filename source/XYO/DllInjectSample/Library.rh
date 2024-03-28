@@ -7,8 +7,8 @@
 #ifndef XYO_DLLINJECTSAMPLE_LIBRARY_RH
 #define XYO_DLLINJECTSAMPLE_LIBRARY_RH
 
-#ifndef XYO_MANAGEDMEMORY_LIBRARY_RH
-#include <XYO/ManagedMemory/Library.rh>
+#ifndef XYO_PLATFORM_LIBRARY_RH
+#include <XYO/Platform/Library.rh>
 #endif
 
 #endif

@@ -8,4 +8,4 @@
 #include <XYO/DllInjectSample/Copyright.rh>
 #include <XYO/DllInjectSample/Version.rh>
 
-XYO_APPLICATION_VERSION_INFO(XYO_DLLINJECTSAMPLE,"dll-inject-sample.dll","Dll Inject Sample")
+XYO_PLATFORM_VERSION_INFO(XYO_DLLINJECTSAMPLE,"dll-inject-sample.dll","Dll Inject Sample")
