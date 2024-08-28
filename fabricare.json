@@ -1,23 +1,29 @@
 {
 	"solution": {
-		"name" : "dll-inject-sample",
-		"type" : "xyo-cpp",
+		"name": "dll-inject-sample",
+		"type": "xyo-cpp",
 		"projects": [
 			{
-				"name" : "dll-inject-sample",
-				"make" : "dll.static",
+				"name": "dll-inject-sample",
+				"make": "dll",
 				"SPDX-License-Identifier": "MIT",
-				"includePath" : [
+				"includePath": [
 					"source/XYO/DllInjectSample/Code"
 				],
-				"sourcePath" : [
+				"sourcePath": [
 					"XYO/DllInjectSample"
 				],
-				"dependency" : [
-					"xyo-win-inject"
+				"dependency": [
+					"xyo-platform.static",
+					"xyo-win-inject.static"
 				],
+				"defines": [
+					"XYO_PLATFORM_LIBRARY",
+					"XYO_WININJECT_LIBRARY"
+				],
+				"crt": "static"
 			}
 		],
-		"releaseDev" : false
+		"releaseDev": false
 	}
 }
