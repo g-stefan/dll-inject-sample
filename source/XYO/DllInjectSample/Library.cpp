@@ -1,7 +1,7 @@
 // Dll Inject Sample
-// Copyright (c) 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
+// Copyright (c) 2014-2025 Grigore Stefan <g_stefan@yahoo.com>
 // MIT License (MIT) <http://opensource.org/licenses/MIT>
-// SPDX-FileCopyrightText: 2014-2024 Grigore Stefan <g_stefan@yahoo.com>
+// SPDX-FileCopyrightText: 2014-2025 Grigore Stefan <g_stefan@yahoo.com>
 // SPDX-License-Identifier: MIT
 
 #include <stdio.h>
@@ -210,11 +210,11 @@ FARPROC WINAPI hook_GetProcAddress(FARPROC originalPorc, HMODULE hModule, LPCSTR
 		if (retV == (FARPROC)(*scanList)->originalProc) {
 			OutputDebugStringA("---original---");
 			OutputDebugStringA((*scanList)->procName);
-			if (XYO::Encoding::StringCore::compareIgnoreCaseAscii((*scanList)->procName, "LoadLibraryW") == 0) {
+			if (XYO::Encoding::StringCore::compareIgnoreCaseASCII((*scanList)->procName, "LoadLibraryW") == 0) {
 				OutputDebugStringA("---replaced---");
 				return (*scanList)->newProc;
 			};
-			if (XYO::Encoding::StringCore::compareIgnoreCaseAscii((*scanList)->procName, "LoadLibraryExW") == 0) {
+			if (XYO::Encoding::StringCore::compareIgnoreCaseASCII((*scanList)->procName, "LoadLibraryExW") == 0) {
 				OutputDebugStringA("---replaced---");
 				return (*scanList)->newProc;
 			};
