@@ -17,10 +17,6 @@
 					"xyo-platform.static",
 					"xyo-win-inject.static"
 				],
-				"defines": [
-					"XYO_PLATFORM_LIBRARY",
-					"XYO_WININJECT_LIBRARY"
-				],
 				"crt": "static"
 			}
 		],
