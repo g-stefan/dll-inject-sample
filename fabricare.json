@@ -1,5 +1,6 @@
 {
 	"solution": {
+		"namespace" : "xyo",
 		"name": "dll-inject-sample",
 		"type": "xyo-cpp",
 		"projects": [
@@ -15,6 +16,26 @@
 				],
 				"dependency": [
 					"xyo-platform.static",
+					"xyo-win-inject.static"
+				],
+				"crt": "static"
+			},
+			{
+				"name": "test.01",
+				"make": "exe",
+				"category": "test",
+				"SPDX-License-Identifier": "Unlicense",
+				"dependency": [
+					"xyo-win-inject.static"
+				],
+				"crt": "static"
+			},
+			{
+				"name": "test.02",
+				"make": "exe",
+				"category": "test",
+				"SPDX-License-Identifier": "Unlicense",
+				"dependency": [
 					"xyo-win-inject.static"
 				],
 				"crt": "static"

@@ -1,0 +1,88 @@
+version = 1
+SPDX-PackageName = "Dll inject sample"
+SPDX-PackageSupplier = "Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-PackageDownloadLocation = "https://github.com/g-stefan/dll-inject-sample"
+
+[[annotations]]
+path = ".github/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2014-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "Unlicense"
+
+[[annotations]]
+path = ".github/CODE_OF_CONDUCT.md"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2014 Coraline Ada Ehmke <https://where.coraline.codes/>"
+SPDX-License-Identifier = "CC-BY-4.0"
+
+[[annotations]]
+path = ".gitignore"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2014-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "Unlicense"
+
+[[annotations]]
+path = ".clang-format"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2014-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "Unlicense"
+
+[[annotations]]
+path = ".vscode/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2014-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "Unlicense"
+
+[[annotations]]
+path = ".claude/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2014-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "Unlicense"
+
+[[annotations]]
+path = "fabricare.json"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2014-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "Unlicense"
+
+[[annotations]]
+path = "version.json"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2014-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "Unlicense"
+
+[[annotations]]
+path = "README.md"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2014-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2014-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "source/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2014-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "test/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2014-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "Unlicense"
+
+[[annotations]]
+path = "output/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2014-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "temp/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2014-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "MIT"
