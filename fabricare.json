@@ -1,6 +1,5 @@
 {
 	"solution": {
-		"namespace" : "xyo",
 		"name": "dll-inject-sample",
 		"type": "xyo-cpp",
 		"projects": [
